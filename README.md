@@ -1,6 +1,6 @@
 Currently the dev server runs on port 3141 (after running command `npm run dev`). All webservers run localy as well as on the local network. 
-The production server can be build with `npm run build`, then `pm2 reset all`. The preview is accessable on port 3140. It will not update until
-the build command is run. It is also the dashboard that runs on startup of the pi.
+The production server can be built with `npm run build`, then `pm2 reset all`. The preview is accessable on port 3140. It will not update until
+the build command is run. The preview is also what is ran on pi init, so development won't break the production build.
 
 # This is all of the project set up defaults and documentation
 
