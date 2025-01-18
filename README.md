@@ -1,3 +1,9 @@
+Currently the dev server runs on port 3141 (after running command `npm run dev`). All webservers run localy as well as on the local network. 
+The production server can be build with `npm run build`, then `pm2 reset all`. The preview is accessable on port 3140. It will not update until
+the build command is run. It is also the dashboard that runs on startup of the pi.
+
+# This is all of the project set up defaults and documentation
+
 # FWC custom dashboard with React + TypeScript + Vite
 
 This template should help get you started developing a custom FWC dashboard with React + Typescript + Vite.
