@@ -7,7 +7,7 @@ themes.addThemeRules('dark', { ...darkTheme, ...customDarkTheme });
 themes.addThemeRules('light', customLightTheme);
 
 function App() {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('dark');
 
   const updateTheme = (newTheme: string) => {
     setTheme(newTheme);
@@ -15,7 +15,7 @@ function App() {
   };
 
   useEffect(() => {
-    themes.setTheme(document.body, 'light');
+    themes.setTheme(document.body, 'dark');
   }, []);
 
   return (
