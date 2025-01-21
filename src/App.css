@@ -34,7 +34,7 @@ code {
 }
 
 [data-theme='dark'] {
-  background: rgb(35, 51, 72);
+  background: #333;
   & .theme-chooser {
     color: white;
   }

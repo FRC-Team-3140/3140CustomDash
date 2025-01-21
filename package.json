@@ -15,8 +15,11 @@
     "preview": "vite preview --host"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
     "@frc-web-components/fwc": "^3.1.0",
     "@frc-web-components/react": "^2.0.0",
+    "@mui/material": "^6.4.1",
     "@webbitjs/store": "^5.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
