@@ -30,8 +30,8 @@ const Auto: React.FC = () => {
     return (
         <>
             <div style={divStyles}>
-                <SendableChooser source-key="/Shuffleboard/Autonomous/SendableChooser[0]" style={{ color: 'white' }} />
-                <BasicFmsInfo source-key="/FMSInfo" style={{ color: 'white' }} />
+                <SendableChooser source-key="/Shuffleboard/Autonomous/SendableChooser[0]" />
+                <BasicFmsInfo source-key="/FMSInfo" />
                 <ToggleButton
                     label="Toggle Button"
                     toggled={toggled}

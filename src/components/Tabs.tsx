@@ -4,6 +4,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import Auto from './menus/Auto';
+import TeleOp from './menus/TeleOp';
+import Dev from './menus/Dev';
 
 function CustomTabPanel(props: { [x: string]: any; children: any; value: any; index: any; }) {
     const { children, value, index, ...other } = props;
@@ -37,12 +39,12 @@ function a11yProps(index: number) {
 export default function BasicTabs() {
     const [value, setValue] = React.useState(0);
 
-    const handleChange = (event: any, newValue: React.SetStateAction<number>) => {
+    const handleChange = (_event: any, newValue: React.SetStateAction<number>) => {
         setValue(newValue);
     };
 
     return (
-        <Box sx={{ width: '100%' }}>
+        <Box sx={{ width: '100%', height: '100%', margin: '0', padding: '0' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs
                     value={value}
@@ -61,14 +63,14 @@ export default function BasicTabs() {
                     <Tab label="Dev" {...a11yProps(2)} />
                 </Tabs>
             </Box>
-            <CustomTabPanel value={value} index={0}>
+            <CustomTabPanel value={value} index={0} style={{ innerWidth: '100vw', innerHeight: '100vh' }}>
                 <Auto />
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
-                Item Two
+                <TeleOp />
             </CustomTabPanel>
             <CustomTabPanel value={value} index={2}>
-                Item Three
+                <Dev />
             </CustomTabPanel>
         </Box>
     );
