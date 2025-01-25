@@ -19,31 +19,42 @@ const Auto: React.FC = () => {
     const divStyles: CSSProperties = {
         display: 'flex',
         gap: '15px',
-        alignItems: 'start'
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        width: '100%',
+        height: '100%'
     };
 
     const fieldStyles: CSSProperties = {
-        width: '500px',
-        height: '300px'
+        transformOrigin: 'top left',
+        transform: 'scale(2)',
+        position: 'absolute',
+        top: '50%',
+        left: '50%'
     };
+
+    let allianceBlue = useEntry('/FMSInfo/IsBlue', true);
 
     return (
         <>
             <div style={divStyles}>
-                <SendableChooser source-key="/Shuffleboard/Autonomous/SendableChooser[0]" style={{ color: 'white' }} />
-                <BasicFmsInfo source-key="/FMSInfo" style={{ color: 'white' }} />
+                <SendableChooser source-key="/Shuffleboard/Autonomous/SendableChooser[0]" style={{ width: '25vw', fontWeight: 'bold' }} />
+                <BasicFmsInfo source-key="/FMSInfo" style={{ width: '25vw', fontSize: '1.25vw' }} />
                 <ToggleButton
                     label="Toggle Button"
                     toggled={toggled}
-                    ontoggle={updateToggle} />
+                    ontoggle={updateToggle}
+                    style={{ width: '25vw' }}
+                />
             </div>
             <Field
                 style={fieldStyles}
                 cropLeft={0.1}
                 cropRight={0.9}
                 rotationUnit="deg"
+                rotation={90}
             >
-                <FieldRobot color="blue" opacity={1} pose={pose} />
+                <FieldRobot color={allianceBlue ? 'blue' : 'red'} opacity={1} pose={pose} />
             </Field>
         </>
     );

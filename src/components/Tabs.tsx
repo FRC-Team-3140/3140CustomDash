@@ -1,5 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { CSSProperties } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
@@ -37,41 +39,56 @@ function a11yProps(index: number) {
 }
 
 export default function BasicTabs() {
+    const theme = createTheme({
+        palette: {
+            primary: {
+                main: '#4d4dff',
+            },
+            secondary: {
+                main: '#f44336',
+            },
+        },
+    });
+
+    let allianceBlue = true;
+
     const [value, setValue] = React.useState(0);
 
     const handleChange = (_event: any, newValue: React.SetStateAction<number>) => {
         setValue(newValue);
     };
 
+    const tabPanelStyles: CSSProperties = {
+        width: '100vw', 
+        height: '100vh'
+    }
+
     return (
-        <Box sx={{ width: '100%', height: '100%', margin: '0', padding: '0' }}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs
-                    value={value}
-                    onChange={handleChange}
-                    variant='fullWidth'
-                    sx={{
-                        '& .MuiTabs-textColorPrimary': { color: '#FFFFFF' },
-                        '& .MuiTab-textColor': { color: '#FFFFFF' },
-                        '& .MuiTab-root': { color: '#FFFFFF', fontSize: '1.5vw', fontWeight: 'bold', fontFamily: 'monospace' },
-                        '& .Mui-selected': { color: '#FFFFFF', fontSize: '1.5vw', fontWeight: 'bold', fontFamily: 'monospace' },
-                        '& .MuiTabs-indicator': { backgroundColor: '#FFFFFF' }
-                    }}
-                >
-                    <Tab label="Auto" {...a11yProps(0)} />
-                    <Tab label="TeleOp" {...a11yProps(1)} />
-                    <Tab label="Dev" {...a11yProps(2)} />
-                </Tabs>
+        <ThemeProvider theme={theme}>
+            <Box sx={{ width: '100%', height: '100%', margin: '0', padding: '0' }}>
+                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                    <Tabs
+                        value={value}
+                        onChange={handleChange}
+                        variant='fullWidth'
+                        textColor={allianceBlue ? 'primary' : 'secondary'}
+                        indicatorColor={allianceBlue ? 'primary' : 'secondary'}
+                    >
+                        <Tab label="Auto" {...a11yProps(0)} sx={{ fontFamily: 'monospace', fontWeight: 'bold', fontSize: '2vw', color: 'white' }} />
+                        <Tab label="TeleOp" {...a11yProps(1)} sx={{ fontFamily: 'monospace', fontWeight: 'bold', fontSize: '2vw', color: 'white' }} />
+                        <Tab label="Dev" {...a11yProps(2)} sx={{ fontFamily: 'monospace', fontWeight: 'bold', fontSize: '2vw', color: 'white' }} />
+                    </Tabs>
+                </Box>
+                <CustomTabPanel value={value} index={0} style={tabPanelStyles}>
+                    <Auto />
+                </CustomTabPanel>
+                <CustomTabPanel value={value} index={1} style={tabPanelStyles}>
+                    <TeleOp />
+                </CustomTabPanel>
+                <CustomTabPanel value={value} index={2} style={tabPanelStyles}>
+                    <Dev />
+                </CustomTabPanel>
             </Box>
-            <CustomTabPanel value={value} index={0} style={{ innerWidth: '100vw', innerHeight: '100vh' }}>
-                <Auto />
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={1}>
-                <TeleOp />
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={2}>
-                <Dev />
-            </CustomTabPanel>
-        </Box>
+        </ThemeProvider>
     );
 }
