@@ -1,7 +1,10 @@
 .reef-component {
     position: relative;
-    width: 25vw;
+    float: right;
+    width: 15vw;
+    margin: 0 2vw 0 2vw;
     height: auto;
+    border: 1px solid white;
 }
 
 .buttons-container {
@@ -18,7 +21,7 @@
     border-radius: 5%;
     color: rgba(200, 200, 200, 0.6);
     font-family: monospace;
-    font-size: 1000%;
+    font-size: 500%;
     padding: 10px;
     cursor: pointer;
     height: 25%;

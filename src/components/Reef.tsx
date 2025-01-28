@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import reefBackground from '../assets/reef.png';
 import '../reef.css';
 
@@ -8,6 +8,23 @@ const ReefComponent = () => {
     const handleButtonClick = (index: number) => {
         setSelectedButton(index);
     };
+
+    useEffect(() => {
+        const keyMappings = [0, 2, 4, 6, 1, 3, 5, 7];
+
+        const handleKeyPress = (event: KeyboardEvent) => {
+            const key = parseInt(event.key, 10);
+            if (key >= 1 && key <= 8) {
+                handleButtonClick(keyMappings[key - 1]);
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyPress);
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyPress);
+        };
+    }, []);
 
     const renderButtons = () => {
         return (
@@ -26,7 +43,7 @@ const ReefComponent = () => {
     };
 
     return (
-        <div className="reef-component" style={{ position: 'relative' }}>
+        <div className="reef-component">
             <img src={reefBackground} alt="Reef Background" style={{ width: '100%' }} />
             <div className="buttons">
                 {renderButtons()}
