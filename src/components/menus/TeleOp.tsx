@@ -3,6 +3,8 @@ import {
     BasicFmsInfo,
     Field,
     FieldRobot,
+    Canvas,
+    CanvasMjpgStream,
 } from '@frc-web-components/react';
 import React, { CSSProperties } from 'react';
 import ReefComponent from '../Reef';
@@ -33,6 +35,9 @@ const TeleOp: React.FC = () => {
             <div style={divStyles}>
                 <BasicFmsInfo source-key="/FMSInfo" style={{ width: '25vw', fontSize: '1.25vw' }} />
             </div>
+            <Canvas backgroundColor='#111015'>
+                <CanvasMjpgStream origin={[0, 0]} crosshairColor="white" srcs={['SmartDashboard/Camera']} />
+            </Canvas>
             <Field
                 style={fieldStyles}
                 cropLeft={0.1}
