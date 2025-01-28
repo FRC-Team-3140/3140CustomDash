@@ -11,19 +11,20 @@ const Dev: React.FC = () => {
     const divStyles: CSSProperties = {
         display: 'flex',
         gap: '15px',
-        alignItems: 'start'
+        alignItems: 'center',
+        alignSelf: 'center',
     };
+
+    const toggleStyles: CSSProperties = {
+        margin: '1vh',
+        padding: '1vh'
+    }
 
     const [swerveToggled, setSwerveToggled] = useEntry('/dashboard/swerveToggled', false);
     const [algaeIntakeToggled, setAlgaeIntakeToggled] = useEntry('/dashboard/algaeIntakeToggled', false);
     const [endEffectorToggled, setEndEffectorToggled] = useEntry('/dashboard/endEffectorToggled', false);
     const [groundIntakeToggled, setGroundIntakeToggled] = useEntry('/dashboard/groundIntakeToggled', false);
     const [elevatorToggled, setElevatorToggled] = useEntry('/dashboard/elevatorToggled', false);
-
-    const fieldStyles: CSSProperties = {
-        width: '500px',
-        height: '300px'
-    };
 
     return (
         <>
@@ -33,28 +34,32 @@ const Dev: React.FC = () => {
                 <div />
             </div>
             {/* TODO: Fix Copilots mistakes with Networktables for the buttons below and add red/green styling for enable disable visual comfirmation */}
-            <div style={fieldStyles}>
-                <ToggleButton
-                    style={{ margin: '1vh', padding: '1vh' }}
-                    label="Test Swerve"
-                    toggled={swerveToggled}
-                    ontoggle={() => setSwerveToggled(!swerveToggled)} />
-                <ToggleButton
-                    label="Test Algae Intake"
-                    toggled={algaeIntakeToggled}
-                    ontoggle={() => setAlgaeIntakeToggled(!algaeIntakeToggled)} />
-                <ToggleButton
-                    label="Test End Effector"
-                    toggled={endEffectorToggled}
-                    ontoggle={() => setEndEffectorToggled(!endEffectorToggled)} />
-                <ToggleButton
-                    label="Test Ground Intake"
-                    toggled={groundIntakeToggled}
-                    ontoggle={() => setGroundIntakeToggled(!groundIntakeToggled)} />
-                <ToggleButton
-                    label="Test Elevator"
-                    toggled={elevatorToggled}
-                    ontoggle={() => setElevatorToggled(!elevatorToggled)} />
+            <div style={{ ...divStyles, width: '100%', justifyContent: 'center' }}>
+                <div style={{ ...divStyles, width: '65vw', justifyContent: 'space-between', border: '1px solid white' }}>
+                    <ToggleButton
+                        style={toggleStyles}
+                        label="Test Swerve"
+                        toggled={swerveToggled}
+                        ontoggle={() => setSwerveToggled(!swerveToggled)} />
+                    <ToggleButton
+                        style={toggleStyles}
+                        label="Test Algae Intake"
+                        toggled={algaeIntakeToggled}
+                        ontoggle={() => setAlgaeIntakeToggled(!algaeIntakeToggled)} />
+                    <ToggleButton
+                        style={toggleStyles}
+                        label="Test End Effector"
+                        toggled={endEffectorToggled}
+                        ontoggle={() => setEndEffectorToggled(!endEffectorToggled)} />
+                    <ToggleButton
+                        label="Test Ground Intake"
+                        toggled={groundIntakeToggled}
+                        ontoggle={() => setGroundIntakeToggled(!groundIntakeToggled)}> </ToggleButton>
+                    <ToggleButton
+                        label="Test Elevator"
+                        toggled={elevatorToggled}
+                        ontoggle={() => setElevatorToggled(!elevatorToggled)} />
+                </div>
             </div>
         </>
     );
