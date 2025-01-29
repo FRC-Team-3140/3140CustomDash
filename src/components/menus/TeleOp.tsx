@@ -20,7 +20,8 @@ const TeleOp: React.FC = () => {
         left: '47%'
     };
 
-    let allianceBlue = useEntry('/FMSInfo/IsBlue', true);
+    // TODO: update to the actual FMS info key & Decide if origin should change like it is currently
+    let allianceRed = useEntry('/FMSInfo/IsRed', true);
 
     return (
         <>
@@ -42,9 +43,10 @@ const TeleOp: React.FC = () => {
                 cropLeft={0.1}
                 cropRight={0.9}
                 rotationUnit="deg"
-                rotation={90}
+                origin={allianceRed ? 'red' : 'blue'}
+                rotation={allianceRed ? 270 : 90}
             >
-                <FieldRobot color={allianceBlue ? 'blue' : 'red'} opacity={1} pose={pose} />
+                <FieldRobot color={allianceRed ? 'red' : 'blue'} opacity={1} pose={pose} />
             </Field>
             <ReefComponent />
             <div style={{ position: 'absolute', bottom: '0', left: '50%', transform: 'translate(-50%, 0)', margin: '1%' }}>

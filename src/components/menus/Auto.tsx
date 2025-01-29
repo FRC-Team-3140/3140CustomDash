@@ -27,7 +27,7 @@ const Auto: React.FC = () => {
         left: '50%'
     };
 
-    let allianceBlue = useEntry('/FMSInfo/IsBlue', true);
+    let allianceRed = useEntry('/FMSInfo/IsRed', true);
 
     return (
         <>
@@ -43,7 +43,7 @@ const Auto: React.FC = () => {
                 rotationUnit="deg"
                 rotation={90}
             >
-                <FieldRobot color={allianceBlue ? 'blue' : 'red'} opacity={1} pose={pose} />
+                <FieldRobot color={allianceRed ? 'blue' : 'red'} opacity={1} pose={pose} />
             </Field>
         </>
     );

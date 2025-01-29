@@ -23,7 +23,7 @@ const Dev: React.FC = () => {
         width: '70vw',
     };
 
-    let allianceBlue = useEntry('/FMSInfo/IsBlue', true);
+    let allianceRed = useEntry('/FMSInfo/IsRed', true);
 
     const [swerveToggled, setSwerveToggled] = React.useState<boolean>(false);
     const [algaeIntakeToggled, setAlgaeIntakeToggled] = React.useState<boolean>(false);
@@ -156,7 +156,7 @@ const Dev: React.FC = () => {
                     rotationUnit="deg"
                     rotation={0}
                 >
-                    <FieldRobot color={allianceBlue ? 'blue' : 'red'} opacity={1} pose={pose} />
+                    <FieldRobot color={allianceRed ? 'blue' : 'red'} opacity={1} pose={pose} />
                 </Field>
             </div>
         </>
