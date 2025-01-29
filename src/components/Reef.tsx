@@ -35,7 +35,7 @@ const ReefComponent = () => {
                         className={`reef-button ${selectedButton === index ? 'green' : ''}`}
                         onClick={() => handleButtonClick(index)}
                     >
-                        {`L${Math.floor(index / 2) + 1}`}
+                        {`L${4 - Math.floor(index / 2)}`}
                     </button>
                 ))}
             </div>
@@ -43,11 +43,20 @@ const ReefComponent = () => {
     };
 
     return (
-        <div className="reef-component">
-            <img src={reefBackground} alt="Reef Background" style={{ width: '100%' }} />
-            <div className="buttons">
-                {renderButtons()}
+        <div style={{width: '15vw', position: 'absolute', top: '12%', right: '0', border: '1px solid white'}}>
+            <div className="reef-component" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <div>
+                    <img src={reefBackground} alt="Reef Background" style={{ width: '100%' }} />
+                </div>
+                <div className="buttons">
+                    {renderButtons()}
+                </div>
             </div>
+            <span style={{position: 'absolute', top: '10%', }}>
+                <div style={{ textAlign: 'center', width: '15vw', height: '10vh', marginTop: '20px' }}>
+                    <h2 style={{ fontSize: '3vw' }}>Getting Algae</h2>
+                </div>
+            </span>
         </div>
     );
 };

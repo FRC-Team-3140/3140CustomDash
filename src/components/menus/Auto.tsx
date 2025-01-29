@@ -2,19 +2,13 @@ import {
     useEntry,
     BasicFmsInfo,
     SendableChooser,
-    ToggleButton,
     Field,
-    FieldRobot,
+    FieldRobot
 } from '@frc-web-components/react';
 import React, { CSSProperties } from 'react';
 
 const Auto: React.FC = () => {
-    const [toggled, setToggled] = useEntry('/dashboard/toggled', false);
     const [pose] = useEntry('/SmartDashboard/Field/Robot', [0, 0, 0]);
-
-    const updateToggle = () => {
-        setToggled(!toggled);
-    };
 
     const divStyles: CSSProperties = {
         display: 'flex',
@@ -40,12 +34,7 @@ const Auto: React.FC = () => {
             <div style={divStyles}>
                 <SendableChooser source-key="/Shuffleboard/Autonomous/SendableChooser[0]" style={{ width: '25vw', fontWeight: 'bold' }} />
                 <BasicFmsInfo source-key="/FMSInfo" style={{ width: '25vw', fontSize: '1.25vw' }} />
-                <ToggleButton
-                    label="Toggle Button"
-                    toggled={toggled}
-                    ontoggle={updateToggle}
-                    style={{ width: '25vw' }}
-                />
+                <div style={{ width: '25vw' }} />
             </div>
             <Field
                 style={fieldStyles}

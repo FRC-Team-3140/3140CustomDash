@@ -1,11 +1,25 @@
 body {
   margin: 0;
   padding: 0;
+  overflow: hidden;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+hr {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 15%, rgba(255, 255, 255, 1) 30%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 1) 70%, rgba(255, 255, 255, 0) 85%, rgba(255, 255, 255, 0) 100%);
+  height: 2px;
+  border: 0;
+}
+
+
+h2 {
+  margin: .5%;
+  color: white;
+  font-family: sans-serif;
 }
 
 code {
@@ -29,7 +43,8 @@ code {
 }
 
 [data-theme='dark'] {
-  background: #111015;
+  background: linear-gradient(24deg, rgba(21, 19, 26, 1) 0%, rgba(17, 16, 21, 1) 38%, rgb(31, 30, 38) 100%);
+
   & .theme-chooser {
     color: white;
   }

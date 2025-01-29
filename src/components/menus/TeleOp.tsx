@@ -4,7 +4,7 @@ import {
     Field,
     FieldRobot,
     Canvas,
-    CanvasMjpgStream,
+    CanvasMjpgStream
 } from '@frc-web-components/react';
 import React, { CSSProperties } from 'react';
 import ReefComponent from '../Reef';
@@ -12,32 +12,31 @@ import ReefComponent from '../Reef';
 const TeleOp: React.FC = () => {
     const [pose] = useEntry('/SmartDashboard/Field/Robot', [0, 0, 0]);
 
-    const divStyles: CSSProperties = {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
-        height: '100%'
-    };
-
     const fieldStyles: CSSProperties = {
         transformOrigin: 'top left',
         transform: 'scale(2)',
         position: 'absolute',
-        top: '50%',
-        left: '20%'
+        top: '14%',
+        left: '47%'
     };
 
     let allianceBlue = useEntry('/FMSInfo/IsBlue', true);
 
     return (
         <>
-            <div style={divStyles}>
-                <BasicFmsInfo source-key="/FMSInfo" style={{ width: '25vw', fontSize: '1.25vw' }} />
+            <div style={{ minWidth: 'fit-content', minHeight: 'fit-content', maxWidth: '50vw', maxHeight: '80%' }}>
+                <div>
+                    <Canvas backgroundColor='rgba(0, 0, 0, 0.0)'>
+                        <CanvasMjpgStream origin={[0, 0]} crosshairColor="white" srcs={['SmartDashboard/Camera']} />
+                    </Canvas>
+                </div>
+                <br/>
+                <div>
+                    <Canvas backgroundColor='rgba(0, 0, 0, 0.0)'>
+                        <CanvasMjpgStream origin={[0, 0]} crosshairColor="white" srcs={['SmartDashboard/Camera']} />
+                    </Canvas>
+                </div>
             </div>
-            <Canvas backgroundColor='#111015'>
-                <CanvasMjpgStream origin={[0, 0]} crosshairColor="white" srcs={['SmartDashboard/Camera']} />
-            </Canvas>
             <Field
                 style={fieldStyles}
                 cropLeft={0.1}
@@ -48,6 +47,9 @@ const TeleOp: React.FC = () => {
                 <FieldRobot color={allianceBlue ? 'blue' : 'red'} opacity={1} pose={pose} />
             </Field>
             <ReefComponent />
+            <div style={{ position: 'absolute', bottom: '0', left: '50%', transform: 'translate(-50%, 0)', margin: '1%' }}>
+                <BasicFmsInfo source-key="/FMSInfo" style={{ fontSize: '1.25vw' }} />
+            </div>
         </>
     );
 };
