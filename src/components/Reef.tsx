@@ -42,21 +42,22 @@ const ReefComponent = () => {
         );
     };
 
+    // TODO: Interface with Networktables
+    const gettingAlgae = false;
+
     return (
-        <div style={{width: '15vw', position: 'absolute', top: '12%', right: '0', border: '1px solid white'}}>
+        <div style={{maxWidth: '15vw', position: 'absolute', top: '12%', right: '0' }}>
             <div className="reef-component" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <div>
+                <div style={{ width: '100%' }}>
                     <img src={reefBackground} alt="Reef Background" style={{ width: '100%' }} />
                 </div>
                 <div className="buttons">
                     {renderButtons()}
                 </div>
             </div>
-            <span style={{position: 'absolute', top: '10%', }}>
-                <div style={{ textAlign: 'center', width: '15vw', height: '10vh', marginTop: '20px' }}>
-                    <h2 style={{ fontSize: '3vw' }}>Getting Algae</h2>
-                </div>
-            </span>
+            <div style={{ textAlign: 'center', maxWidth: '15vw', height: '10vh', marginTop: '20px' }}>
+                <h2 style={{ fontSize: '2vw', width: '100%', color: gettingAlgae ? 'green' : 'transparent' }}>Getting Algae</h2>
+            </div>
         </div>
     );
 };
