@@ -6,6 +6,7 @@ import {
     FieldRobot
 } from '@frc-web-components/react';
 import React, { CSSProperties } from 'react';
+import { alliance, botPose } from '../../constants';
 
 const Auto: React.FC = () => {
     const [pose] = useEntry(botPose, [0, 0, 0]);

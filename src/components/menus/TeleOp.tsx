@@ -9,6 +9,7 @@ import {
 } from '@frc-web-components/react';
 import React, { CSSProperties } from 'react';
 import ReefComponent from '../Reef';
+import { alliance, botPose } from '../../constants';
 
 const TeleOp: React.FC = () => {
     const [pose] = useEntry(botPose, [0, 0, 0]);

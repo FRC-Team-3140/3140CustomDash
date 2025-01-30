@@ -1,12 +1,17 @@
-const botPose = '/SmartDashboard/Field/Robot';
-const voltage = '/ROBOTINFO/Voltage';
-const alliance = '/FMSInfo/IsRed';
-const devSwerve = '/Dashboard/Dev/Swerve';
-const devAlgaeIntake = '/Dashboard/Dev/Algae Intake';
-const devEndEffector = '/Dashboard/Dev/End Effector';
-const devGroundIntake = '/Dashboard/Dev/Ground Intake';
-const devElevator = '/Dashboard/Dev/Elevator';
-const devAlgaeGroundIntake = '/Dashboard/Dev/Ground Handoff';
-const devSourceHandoff = '/Dashboard/Dev/Source Handoff';
-const devAlgaeReef = '/Dashboard/Dev/Algae Reef';
-const devAlgaeGround = '/Dashboard/Dev/Algae Ground';
+export const botPose = '/SmartDashboard/Field/Robot';
+
+export const curVoltage = '/ROBOTINFO/Voltage';
+export const minVoltage = 8;
+
+export const alliance = '/FMSInfo/IsRed';
+
+// Dev Buttons
+export const devSwerve = '/Dashboard/Dev/Swerve';
+export const devAlgaeIntake = '/Dashboard/Dev/Algae Intake';
+export const devEndEffector = '/Dashboard/Dev/End Effector';
+export const devGroundIntake = '/Dashboard/Dev/Ground Intake';
+export const devElevator = '/Dashboard/Dev/Elevator';
+export const devAlgaeGroundIntake = '/Dashboard/Dev/Ground Handoff';
+export const devSourceHandoff = '/Dashboard/Dev/Source Handoff';
+export const devAlgaeReef = '/Dashboard/Dev/Algae Reef';
+export const devAlgaeGround = '/Dashboard/Dev/Algae Ground';
