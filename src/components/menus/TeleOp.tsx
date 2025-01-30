@@ -4,13 +4,17 @@ import {
     Field,
     FieldRobot,
     Canvas,
-    CanvasMjpgStream
+    CanvasMjpgStream,
+    VoltageView
 } from '@frc-web-components/react';
 import React, { CSSProperties } from 'react';
 import ReefComponent from '../Reef';
 
 const TeleOp: React.FC = () => {
     const [pose] = useEntry('/SmartDashboard/Field/Robot', [0, 0, 0]);
+    // TODO: Update this!
+    // const [voltage] = useEntry('/ROBOTINFO/Voltage', 0.0);
+    const voltage = 12;
 
     const fieldStyles: CSSProperties = {
         transformOrigin: 'top left',
@@ -31,7 +35,7 @@ const TeleOp: React.FC = () => {
                         <CanvasMjpgStream origin={[0, 0]} crosshairColor="white" srcs={['SmartDashboard/Camera']} />
                     </Canvas>
                 </div>
-                <br/>
+                <br />
                 <div>
                     <Canvas backgroundColor='rgba(0, 0, 0, 0.0)'>
                         <CanvasMjpgStream origin={[0, 0]} crosshairColor="white" srcs={['SmartDashboard/Camera']} />
@@ -49,6 +53,19 @@ const TeleOp: React.FC = () => {
                 <FieldRobot color={allianceRed ? 'red' : 'blue'} opacity={1} pose={pose} />
             </Field>
             <ReefComponent />
+            <div style={{ position: 'absolute', top: '50%', left: '50%', width: '25vw', transform: 'translate(-50%, -50%)' }}>
+                <style>{`
+                    .dark {
+                        --frc-voltage-view-foreground-color:rgba(0, 255, 0, 0.2);
+                        --frc-bar-background: #444;
+                        --frc-bar-color: white;
+                        --frc-axis-text-color: white;
+                        width: 100%;
+                    }
+                `}</style>
+
+                <VoltageView className='dark' value={voltage} min={0} max={13} numTickMarks={13} />
+            </div>
             <div style={{ position: 'absolute', bottom: '0', left: '50%', transform: 'translate(-50%, 0)', margin: '1%' }}>
                 <BasicFmsInfo source-key="/FMSInfo" style={{ fontSize: '1.25vw' }} />
             </div>

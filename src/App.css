@@ -44,8 +44,4 @@ code {
 
 [data-theme='dark'] {
   background: linear-gradient(24deg, rgba(21, 19, 26, 1) 0%, rgba(17, 16, 21, 1) 38%, rgb(31, 30, 38) 100%);
-
-  & .theme-chooser {
-    color: white;
-  }
 }
