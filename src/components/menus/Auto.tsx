@@ -8,7 +8,7 @@ import {
 import React, { CSSProperties } from 'react';
 
 const Auto: React.FC = () => {
-    const [pose] = useEntry('/SmartDashboard/Field/Robot', [0, 0, 0]);
+    const [pose] = useEntry(botPose, [0, 0, 0]);
 
     const divStyles: CSSProperties = {
         display: 'flex',
@@ -27,7 +27,7 @@ const Auto: React.FC = () => {
         left: '50%'
     };
 
-    let allianceRed = useEntry('/FMSInfo/IsRed', true);
+    let allianceRed = useEntry(alliance, true);
 
     return (
         <>

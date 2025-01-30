@@ -1,0 +1,12 @@
+const botPose = '/SmartDashboard/Field/Robot';
+const voltage = '/ROBOTINFO/Voltage';
+const alliance = '/FMSInfo/IsRed';
+const devSwerve = '/Dashboard/Dev/Swerve';
+const devAlgaeIntake = '/Dashboard/Dev/Algae Intake';
+const devEndEffector = '/Dashboard/Dev/End Effector';
+const devGroundIntake = '/Dashboard/Dev/Ground Intake';
+const devElevator = '/Dashboard/Dev/Elevator';
+const devAlgaeGroundIntake = '/Dashboard/Dev/Ground Handoff';
+const devSourceHandoff = '/Dashboard/Dev/Source Handoff';
+const devAlgaeReef = '/Dashboard/Dev/Algae Reef';
+const devAlgaeGround = '/Dashboard/Dev/Algae Ground';

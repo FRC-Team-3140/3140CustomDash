@@ -85,7 +85,7 @@ export default function BasicTabs() {
                     <Auto />
                 </CustomTabPanel>
                 {/* TODO: Implement on other tab panels, potentially add logic to make screen red only when bot connected, move all network table entries into a contants file for easy manipulation - TK */}
-                <CustomTabPanel value={value} index={1} style={{ ...tabPanelStyles, backgroundColor: useEntry('/ROBOTINFO/Voltage', 0.0)[0] <= 8 ? 'rgb(200, 0, 0)' : '' }}>
+                <CustomTabPanel value={value} index={1} style={{ ...tabPanelStyles, backgroundColor: useEntry('voltage', 0.0)[0] <= 8 ? 'rgb(200, 0, 0)' : '' }}>
                     <TeleOp />
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={2} style={tabPanelStyles}>

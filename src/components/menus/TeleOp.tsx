@@ -11,9 +11,10 @@ import React, { CSSProperties } from 'react';
 import ReefComponent from '../Reef';
 
 const TeleOp: React.FC = () => {
-    const [pose] = useEntry('/SmartDashboard/Field/Robot', [0, 0, 0]);
+    const [pose] = useEntry(botPose, [0, 0, 0]);
     // TODO: Update this!
-    // const [voltage] = useEntry('/ROBOTINFO/Voltage', 0.0);
+    // const [voltage] = useEntry('voltage', 0.0);
+    // The following line is temporary!
     const voltage = 12;
 
     const fieldStyles: CSSProperties = {
@@ -25,7 +26,7 @@ const TeleOp: React.FC = () => {
     };
 
     // TODO: update to the actual FMS info key & Decide if origin should change like it is currently
-    let allianceRed = useEntry('/FMSInfo/IsRed', true);
+    let allianceRed = useEntry(alliance, true);
 
     return (
         <>

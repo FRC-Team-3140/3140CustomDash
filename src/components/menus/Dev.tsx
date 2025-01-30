@@ -9,7 +9,7 @@ import '../../devToggleBtn.css';
 
 const Dev: React.FC = () => {
 
-    const [pose] = useEntry('/SmartDashboard/Field/Robot', [0, 0, 0]);
+    const [pose] = useEntry(botPose, [0, 0, 0]);
 
     const divStyles: CSSProperties = {
         display: 'flex',
@@ -23,7 +23,7 @@ const Dev: React.FC = () => {
         width: '70vw',
     };
 
-    let allianceRed = useEntry('/FMSInfo/IsRed', true);
+    let allianceRed = useEntry(alliance, true);
 
     const [swerveToggled, setSwerveToggled] = React.useState<boolean>(false);
     const [algaeIntakeToggled, setAlgaeIntakeToggled] = React.useState<boolean>(false);
@@ -36,16 +36,16 @@ const Dev: React.FC = () => {
     const [algaeReefToggled, setAlgaeReefToggled] = React.useState<boolean>(false);
     const [algaeGroundToggled, setAlgaeGroundToggled] = React.useState<boolean>(false);
 
-    const [swerveEntry] = useEntry<boolean>('/Dashboard/Dev/Swerve', false);
-    const [algaeIntakeEntry] = useEntry<boolean>('/Dashboard/Dev/Algae Intake', false);
-    const [endEffectorEntry] = useEntry<boolean>('/Dashboard/Dev/End Effector', false);
-    const [groundIntakeEntry] = useEntry<boolean>('/Dashboard/Dev/Ground Intake', false);
-    const [elevatorEntry] = useEntry<boolean>('/Dashboard/Dev/Elevator', false);
+    const [swerveEntry] = useEntry<boolean>(devSwerve, false);
+    const [algaeIntakeEntry] = useEntry<boolean>(devAlgaeIntake, false);
+    const [endEffectorEntry] = useEntry<boolean>(devEndEffector, false);
+    const [groundIntakeEntry] = useEntry<boolean>(devGroundIntake, false);
+    const [elevatorEntry] = useEntry<boolean>(devElevator, false);
 
-    const [algaeGroundIntakeEntry] = useEntry<boolean>('/Dashboard/Dev/Ground Handoff', false);
-    const [sourceHandoffEntry] = useEntry<boolean>('/Dashboard/Dev/Source Handoff', false);
-    const [algaeReefEntry] = useEntry<boolean>('/Dashboard/Dev/Algae Reef', false);
-    const [algaeGroundEntry] = useEntry<boolean>('/Dashboard/Dev/Algae Ground', false);
+    const [algaeGroundIntakeEntry] = useEntry<boolean>(devAlgaeGroundIntake, false);
+    const [sourceHandoffEntry] = useEntry<boolean>(devSourceHandoff, false);
+    const [algaeReefEntry] = useEntry<boolean>(devAlgaeReef, false);
+    const [algaeGroundEntry] = useEntry<boolean>(devAlgaeGround, false);
 
     useEffect(() => {
         setSwerveToggled(swerveEntry);
