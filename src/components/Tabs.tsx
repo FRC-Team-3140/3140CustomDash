@@ -104,12 +104,21 @@ export default function BasicTabs() {
                     </Tabs>
                 </Box>
                 <CustomTabPanel value={value} index={0} style={{ ...tabPanelStyles, backgroundColor: connected ? (currentVoltage <= minVoltage ? 'rgb(200, 0, 0)' : 'transparent') : 'transparent' }}>
+                    <div style={{ zIndex: '-1', opacity: '0.1', width: '35%', minHeight: 'fit-content', position: 'absolute', left: '50%', bottom: '50%', transform: 'translate(-50%, 50%)' }}>
+                        <img src="./src/assets/TeamLogo.png" alt="placeholder" width="100%" height="100%" />
+                    </div>
                     <Auto />
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={1} style={{ ...tabPanelStyles, backgroundColor: connected ? (currentVoltage <= minVoltage ? 'rgb(200, 0, 0)' : 'transparent') : 'transparent' }}>
+                    <div style={{ zIndex: '-1', opacity: '0.1', width: '35%', minHeight: 'fit-content', position: 'absolute', left: '50%', bottom: '50%', transform: 'translate(-50%, 50%)' }}>
+                        <img src="./src/assets/TeamLogo.png" alt="placeholder" width="100%" height="100%" />
+                    </div>
                     <TeleOp />
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={2} style={{ ...tabPanelStyles, backgroundColor: connected ? (currentVoltage <= minVoltage ? 'rgb(200, 0, 0)' : 'transparent') : 'transparent' }}>
+                    <div style={{ zIndex: '-1', opacity: '0.1', width: '35%', minHeight: 'fit-content', position: 'absolute', left: '50%', bottom: '50%', transform: 'translate(-50%, 50%)' }}>
+                        <img src="./src/assets/TeamLogo.png" alt="placeholder" width="100%" height="100%" />
+                    </div>
                     <Dev />
                 </CustomTabPanel>
             </Box>
