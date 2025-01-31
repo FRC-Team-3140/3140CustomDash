@@ -21,11 +21,11 @@ const Auto: React.FC = () => {
     };
 
     const fieldStyles: CSSProperties = {
-        transformOrigin: 'top left',
-        transform: 'scale(2)',
         position: 'absolute',
-        top: '50%',
-        left: '50%'
+        bottom: '50%',
+        left: '50%',
+        transformOrigin: 'top left',
+        transform: 'scale(2) translate(-50%, 25%)',
     };
 
     let allianceRed = useEntry(alliance, true);
@@ -42,7 +42,8 @@ const Auto: React.FC = () => {
                 cropLeft={0.1}
                 cropRight={0.9}
                 rotationUnit="deg"
-                rotation={90}
+                origin={allianceRed ? 'red' : 'blue'}
+                rotation={0}
             >
                 <FieldRobot color={allianceRed ? 'blue' : 'red'} opacity={1} pose={pose} />
             </Field>

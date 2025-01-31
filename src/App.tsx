@@ -16,7 +16,7 @@ function App() {
 
   themes.setTheme(document.body, 'dark');
 
-  const [connected] = useEntry(robotConnected, true);
+  const [connected] = useEntry(robotConnected, false);
 
   return (
     <>

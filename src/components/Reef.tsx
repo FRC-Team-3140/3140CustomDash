@@ -47,7 +47,7 @@ const ReefComponent = () => {
     const [gettingAlgae] = useEntry(gettingAlgaeEntry, false);
 
     return (
-        <div style={{maxWidth: '15vw', position: 'absolute', top: '12%', right: '0' }}>
+        <div style={{ maxWidth: '15vw', position: 'absolute', top: '12%', right: '0' }}>
             <div className="reef-component" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <div style={{ width: '100%' }}>
                     <img src={reefBackground} alt="Reef Background" style={{ width: '100%' }} />

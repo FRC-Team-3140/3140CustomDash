@@ -18,10 +18,10 @@ const TeleOp: React.FC = () => {
 
     const fieldStyles: CSSProperties = {
         transformOrigin: 'top left',
-        transform: 'scale(2)',
+        transform: 'scale(2) translate(-50%, 0)',
         position: 'absolute',
         top: '14%',
-        left: '47%'
+        left: '50%'
     };
 
     // TODO: update to the actual FMS info key & Decide if origin should change like it is currently
