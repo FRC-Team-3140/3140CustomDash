@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import reefBackground from '../assets/reef.png';
 import '../reef.css';
+import { useEntry } from '@frc-web-components/react';
+import { gettingAlgaeEntry } from '../constants';
 
 const ReefComponent = () => {
     const [selectedButton, setSelectedButton] = useState<number | null>(null);
@@ -42,8 +44,7 @@ const ReefComponent = () => {
         );
     };
 
-    // TODO: Interface with Networktables
-    const gettingAlgae = false;
+    const [gettingAlgae] = useEntry(gettingAlgaeEntry, false);
 
     return (
         <div style={{maxWidth: '15vw', position: 'absolute', top: '12%', right: '0' }}>

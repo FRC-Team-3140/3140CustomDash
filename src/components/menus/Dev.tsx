@@ -91,28 +91,28 @@ const Dev: React.FC = () => {
             <div style={{ ...divStyles, width: '100%', justifyContent: 'center' }}>
                 <div style={{ ...divStyles, width: '65vw', justifyContent: 'space-between' }}>
                     <ToggleButton
-                        className="dark"
+                        className="toggle"
                         label="Test Swerve"
                         toggled={swerveToggled}
                         ontoggle={() => setSwerveToggled(!swerveToggled)}
                     />
                     <ToggleButton
-                        className="dark"
+                        className="toggle"
                         label="Test Algae Intake"
                         toggled={algaeIntakeToggled}
                         ontoggle={() => setAlgaeIntakeToggled(!algaeIntakeToggled)} />
                     <ToggleButton
-                        className="dark"
+                        className="toggle"
                         label="Test End Effector"
                         toggled={endEffectorToggled}
                         ontoggle={() => setEndEffectorToggled(!endEffectorToggled)} />
                     <ToggleButton
-                        className="dark"
+                        className="toggle"
                         label="Test Ground Intake"
                         toggled={groundIntakeToggled}
                         ontoggle={() => setGroundIntakeToggled(!groundIntakeToggled)}> </ToggleButton>
                     <ToggleButton
-                        className="dark"
+                        className="toggle"
                         label="Test Elevator"
                         toggled={elevatorToggled}
                         ontoggle={() => setElevatorToggled(!elevatorToggled)} />
@@ -126,23 +126,23 @@ const Dev: React.FC = () => {
             <div style={{ ...divStyles, width: '100%', justifyContent: 'center' }}>
                 <div style={{ ...divStyles, width: '65vw', justifyContent: 'space-between' }}>
                     <ToggleButton
-                        className="dark"
+                        className="toggle"
                         label="Ground Handoff"
                         toggled={algaeGroundIntakeToggled}
                         ontoggle={() => setAlgaeGroundIntakeToggled(!algaeGroundIntakeToggled)}
                     />
                     <ToggleButton
-                        className="dark"
+                        className="toggle"
                         label="Source Handoff"
                         toggled={sourceHandoffToggled}
                         ontoggle={() => setSourceHandoffToggled(!sourceHandoffToggled)} />
                     <ToggleButton
-                        className="dark"
+                        className="toggle"
                         label="Algae Reef"
                         toggled={algaeReefToggled}
                         ontoggle={() => setAlgaeReefToggled(!algaeReefToggled)} />
                     <ToggleButton
-                        className="dark"
+                        className="toggle"
                         label="Algae Ground"
                         toggled={algaeGroundToggled}
                         ontoggle={() => setAlgaeGroundToggled(!algaeGroundIntakeToggled)}> </ToggleButton>

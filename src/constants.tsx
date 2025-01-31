@@ -1,9 +1,14 @@
+export const robotConnected = '/Robot/IsConnected';
 export const botPose = '/SmartDashboard/Field/Robot';
 
 export const curVoltage = '/ROBOTINFO/Voltage';
 export const minVoltage = 8;
 
 export const alliance = '/FMSInfo/IsRed';
+
+export const gameStage = '/FMSInfo/GameStage';
+
+export const gettingAlgaeEntry = '/ROBOTINFO/GettingAlgae';
 
 // Dev Buttons
 export const devSwerve = '/Dashboard/Dev/Swerve';

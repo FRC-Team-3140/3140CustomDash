@@ -1,4 +1,4 @@
-.dark {
+.toggle {
     --frc-button-background-color: linear-gradient(70deg, rgba(142, 0, 0, 1) 0%, rgba(121, 9, 9, 1) 38%, rgb(156, 15, 15) 100%);
     ;
     --frc-button-text-color: white;
@@ -18,7 +18,7 @@
     margin-top: 5px;
 }
 
-.dark:hover {
+.toggle:hover {
     filter: drop-shadow(10px 5px 5px #000000);
     opacity: 0.75;
     transition: 0.5s;

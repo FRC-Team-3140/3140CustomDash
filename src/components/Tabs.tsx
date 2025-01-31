@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { CSSProperties } from 'react';
+import { CSSProperties, useEffect } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
@@ -9,7 +9,7 @@ import Auto from './menus/Auto';
 import TeleOp from './menus/TeleOp';
 import Dev from './menus/Dev';
 import { useEntry } from '@frc-web-components/react';
-import { curVoltage, minVoltage } from '../constants';
+import { curVoltage, gameStage, minVoltage, robotConnected } from '../constants';
 
 function CustomTabPanel(props: { [x: string]: any; children: any; value: any; index: any; }) {
     const { children, value, index, ...other } = props;
@@ -52,6 +52,10 @@ export default function BasicTabs() {
         },
     });
 
+    const [connected] = useEntry(robotConnected, false);
+
+    const [currentVoltage] = useEntry(curVoltage, 1.0);
+
     let allianceBlue = true;
 
     const [value, setValue] = React.useState(0);
@@ -60,8 +64,24 @@ export default function BasicTabs() {
         setValue(newValue);
     };
 
+    useEffect(() => {
+        switch (useEntry(gameStage, '')) {
+            case 'AUTO':
+                setValue(0);
+                break;
+            case 'TELEOP':
+                setValue(1);
+                break;
+            case 'DEV':
+                setValue(2);
+                break;
+            default:
+                break;
+        }
+    }, [gameStage]);
+
     const tabPanelStyles: CSSProperties = {
-        width: '100vw', 
+        width: '100vw',
         height: '100vh'
     }
 
@@ -81,14 +101,13 @@ export default function BasicTabs() {
                         <Tab label="Dev" {...a11yProps(2)} sx={{ fontFamily: 'monospace', fontWeight: 'bold', fontSize: '2vw', color: 'white' }} />
                     </Tabs>
                 </Box>
-                <CustomTabPanel value={value} index={0} style={{ ...tabPanelStyles, backgroundColor: useEntry(curVoltage, 0.0)[0] <= minVoltage ? 'rgb(200, 0, 0)' : '' }}>
+                <CustomTabPanel value={value} index={0} style={{ ...tabPanelStyles, backgroundColor: connected ? (currentVoltage <= minVoltage ? 'rgb(200, 0, 0)' : 'transparent') : 'transparent' }}>
                     <Auto />
                 </CustomTabPanel>
-                {/* TODO: Implement on other tab panels, potentially add logic to make screen red only when bot connected, move all network table entries into a contants file for easy manipulation - TK */}
-                <CustomTabPanel value={value} index={1} style={{ ...tabPanelStyles, backgroundColor: useEntry(curVoltage, 0.0)[0] <= minVoltage ? 'rgb(200, 0, 0)' : '' }}>
+                <CustomTabPanel value={value} index={1} style={{ ...tabPanelStyles, backgroundColor: connected ? (currentVoltage <= minVoltage ? 'rgb(200, 0, 0)' : 'transparent') : 'transparent' }}>
                     <TeleOp />
                 </CustomTabPanel>
-                <CustomTabPanel value={value} index={2} style={{ ...tabPanelStyles, backgroundColor: useEntry(curVoltage, 0.0)[0] <= minVoltage ? 'rgb(200, 0, 0)' : '' }}>
+                <CustomTabPanel value={value} index={2} style={{ ...tabPanelStyles, backgroundColor: connected ? (currentVoltage <= minVoltage ? 'rgb(200, 0, 0)' : 'transparent') : 'transparent' }}>
                     <Dev />
                 </CustomTabPanel>
             </Box>

@@ -9,14 +9,12 @@ import {
 } from '@frc-web-components/react';
 import React, { CSSProperties } from 'react';
 import ReefComponent from '../Reef';
-import { alliance, botPose } from '../../constants';
+import { alliance, botPose, curVoltage } from '../../constants';
 
 const TeleOp: React.FC = () => {
     const [pose] = useEntry(botPose, [0, 0, 0]);
-    // TODO: Update this!
-    // const [voltage] = useEntry('voltage', 0.0);
-    // The following line is temporary!
-    const voltage = 12;
+
+    const [voltage] = useEntry(curVoltage, 0.0);
 
     const fieldStyles: CSSProperties = {
         transformOrigin: 'top left',
@@ -55,7 +53,7 @@ const TeleOp: React.FC = () => {
                 <FieldRobot color={allianceRed ? 'red' : 'blue'} opacity={1} pose={pose} />
             </Field>
             <ReefComponent />
-            <div style={{ position: 'absolute', top: '50%', left: '50%', width: '25vw', transform: 'translate(-50%, -50%)' }}>
+            <div style={{ position: 'absolute', bottom: '4vh', left: '1vw', width: '25vw', margin: '1%' }}>
                 <style>{`
                     .dark {
                         --frc-voltage-view-foreground-color:rgba(0, 255, 0, 0.2);
