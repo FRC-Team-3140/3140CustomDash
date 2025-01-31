@@ -64,8 +64,10 @@ export default function BasicTabs() {
         setValue(newValue);
     };
 
+    const [gameStageValue] = useEntry(gameStage, '');
+
     useEffect(() => {
-        switch (useEntry(gameStage, '')) {
+        switch (gameStageValue) {
             case 'AUTO':
                 setValue(0);
                 break;
@@ -78,7 +80,7 @@ export default function BasicTabs() {
             default:
                 break;
         }
-    }, [gameStage]);
+    }, [gameStageValue]);
 
     const tabPanelStyles: CSSProperties = {
         width: '100vw',
