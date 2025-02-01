@@ -54,7 +54,7 @@ export default function BasicTabs() {
 
     const [connected] = useEntry(robotConnected, false);
 
-    const [currentVoltage] = useEntry(curVoltage, 1.0);
+    const [currentVoltage] = useEntry(curVoltage, 0.0);
 
     let allianceBlue = true;
 
@@ -83,13 +83,13 @@ export default function BasicTabs() {
     }, [gameStageValue]);
 
     const tabPanelStyles: CSSProperties = {
-        width: '100vw',
-        height: '100vh'
+        height: 'fit-content',
+        backgroundColor: connected ? (currentVoltage <= minVoltage ? 'rgb(200, 0, 0)' : 'transparent') : 'transparent'
     }
 
     return (
         <ThemeProvider theme={theme}>
-            <Box sx={{ width: '100%', height: '100%', margin: '0', padding: '0' }}>
+            <Box sx={{ width: '100vw', height: '100vh', margin: '0', padding: '0' }}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                     <Tabs
                         value={value}
@@ -98,25 +98,26 @@ export default function BasicTabs() {
                         textColor={allianceBlue ? 'primary' : 'secondary'}
                         indicatorColor={allianceBlue ? 'primary' : 'secondary'}
                     >
-                        <Tab label="Auto" {...a11yProps(0)} sx={{ fontFamily: 'monospace', fontWeight: 'bold', fontSize: '2vw', color: 'white' }} />
-                        <Tab label="TeleOp" {...a11yProps(1)} sx={{ fontFamily: 'monospace', fontWeight: 'bold', fontSize: '2vw', color: 'white' }} />
-                        <Tab label="Dev" {...a11yProps(2)} sx={{ fontFamily: 'monospace', fontWeight: 'bold', fontSize: '2vw', color: 'white' }} />
+                        <Tab label="Auto" {...a11yProps(0)} sx={{ fontFamily: 'monospace', fontWeight: 'bold', fontSize: '2vw', color: 'white', backgroundColor: 'rgba(0, 0, 0, .3)' }} />
+                        <Tab label="TeleOp" {...a11yProps(1)} sx={{ fontFamily: 'monospace', fontWeight: 'bold', fontSize: '2vw', color: 'white', backgroundColor: 'rgba(0, 0, 0, .3)' }} />
+                        <Tab label="Dev" {...a11yProps(2)} sx={{ fontFamily: 'monospace', fontWeight: 'bold', fontSize: '2vw', color: 'white', backgroundColor: 'rgba(0, 0, 0, .3)' }} />
                     </Tabs>
                 </Box>
-                <CustomTabPanel value={value} index={0} style={{ ...tabPanelStyles, backgroundColor: connected ? (currentVoltage <= minVoltage ? 'rgb(200, 0, 0)' : 'transparent') : 'transparent' }}>
-                    <div style={{ zIndex: '-1', opacity: '0.1', width: '35%', minHeight: 'fit-content', position: 'absolute', left: '50%', bottom: '50%', transform: 'translate(-50%, 50%)' }}>
+                <CustomTabPanel value={value} index={0} style={tabPanelStyles}>
+                    {/* See if the background logo can be moved to App.tsx so it doesn't have to be duplicated. - TK */}
+                    <div style={{ zIndex: '-1', opacity: '0.3', height: '90%', minHeight: 'fit-content', position: 'fixed', left: '50%', bottom: '50%', transform: 'translate(-50%, 50%)' }}>
                         <img src="./src/assets/TeamLogo.png" alt="placeholder" width="100%" height="100%" />
                     </div>
                     <Auto />
                 </CustomTabPanel>
-                <CustomTabPanel value={value} index={1} style={{ ...tabPanelStyles, backgroundColor: connected ? (currentVoltage <= minVoltage ? 'rgb(200, 0, 0)' : 'transparent') : 'transparent' }}>
-                    <div style={{ zIndex: '-1', opacity: '0.1', width: '35%', minHeight: 'fit-content', position: 'absolute', left: '50%', bottom: '50%', transform: 'translate(-50%, 50%)' }}>
+                <CustomTabPanel value={value} index={1} style={tabPanelStyles}>
+                    <div style={{ zIndex: '-1', opacity: '0.3', height: '90%', minHeight: 'fit-content', position: 'fixed', left: '50%', bottom: '50%', transform: 'translate(-50%, 50%)' }}>
                         <img src="./src/assets/TeamLogo.png" alt="placeholder" width="100%" height="100%" />
                     </div>
                     <TeleOp />
                 </CustomTabPanel>
-                <CustomTabPanel value={value} index={2} style={{ ...tabPanelStyles, backgroundColor: connected ? (currentVoltage <= minVoltage ? 'rgb(200, 0, 0)' : 'transparent') : 'transparent' }}>
-                    <div style={{ zIndex: '-1', opacity: '0.1', width: '35%', minHeight: 'fit-content', position: 'absolute', left: '50%', bottom: '50%', transform: 'translate(-50%, 50%)' }}>
+                <CustomTabPanel value={value} index={2} style={tabPanelStyles}>
+                    <div style={{ zIndex: '-1', opacity: '0.3', height: '90%', minHeight: 'fit-content', position: 'fixed', left: '50%', bottom: '50%', transform: 'translate(-50%, 50%)' }}>
                         <img src="./src/assets/TeamLogo.png" alt="placeholder" width="100%" height="100%" />
                     </div>
                     <Dev />
