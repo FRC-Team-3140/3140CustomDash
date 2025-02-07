@@ -1,5 +1,6 @@
 import { useEntry } from '@frc-web-components/react';
 import './App.css';
+import logo from './assets//FlagshipLineartIcon.png';
 import Dashboard from './components/Dashboard';
 import { DashboardThemes, darkTheme } from "@frc-web-components/fwc/themes";
 import { robotConnected } from './constants';
@@ -20,6 +21,9 @@ function App() {
 
   return (
     <>
+      <div style={{ zIndex: '-1', pointerEvents: 'none', opacity: '0.2', height: '90%', minHeight: 'fit-content', position: 'fixed', left: '50%', bottom: '50%', transform: 'translate(-50%, 50%)' }}>
+        <img src={logo} alt="placeholder" width="100%" height="100%" />
+      </div>
       <div className="App" style={{ height: '100vh', width: '100vw', padding: '0', margin: '0' }}>
         <Dashboard />
       </div>

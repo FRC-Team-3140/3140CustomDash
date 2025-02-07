@@ -104,22 +104,12 @@ export default function BasicTabs() {
                     </Tabs>
                 </Box>
                 <CustomTabPanel value={value} index={0} style={tabPanelStyles}>
-                    {/* See if the background logo can be moved to App.tsx so it doesn't have to be duplicated. - TK */}
-                    <div style={{ zIndex: '-1', opacity: '0.3', height: '90%', minHeight: 'fit-content', position: 'fixed', left: '50%', bottom: '50%', transform: 'translate(-50%, 50%)' }}>
-                        <img src="./src/assets/TeamLogo.png" alt="placeholder" width="100%" height="100%" />
-                    </div>
                     <Auto />
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={1} style={tabPanelStyles}>
-                    <div style={{ zIndex: '-1', opacity: '0.3', height: '90%', minHeight: 'fit-content', position: 'fixed', left: '50%', bottom: '50%', transform: 'translate(-50%, 50%)' }}>
-                        <img src="./src/assets/TeamLogo.png" alt="placeholder" width="100%" height="100%" />
-                    </div>
                     <TeleOp />
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={2} style={tabPanelStyles}>
-                    <div style={{ zIndex: '-1', opacity: '0.3', height: '90%', minHeight: 'fit-content', position: 'fixed', left: '50%', bottom: '50%', transform: 'translate(-50%, 50%)' }}>
-                        <img src="./src/assets/TeamLogo.png" alt="placeholder" width="100%" height="100%" />
-                    </div>
                     <Dev />
                 </CustomTabPanel>
             </Box>
