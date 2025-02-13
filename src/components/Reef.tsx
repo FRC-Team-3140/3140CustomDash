@@ -2,14 +2,29 @@ import { useState, useEffect } from 'react';
 import reefBackground from '../assets/reef.png';
 import '../reef.css';
 import { useEntry } from '@frc-web-components/react';
-import { gettingAlgaeEntry } from '../constants';
+import { coralEntry, gettingAlgaeEntry } from '../constants';
 
 const ReefComponent = () => {
+    const [gettingAlgae] = useEntry(gettingAlgaeEntry, false);
+
+    // TODO: Most likely won't need to use the reef entry for any logic on the dashboard side
+    // The robot will have to check to see if it should get algae and update the networktables 
+    // accordingly. The goal is if the selected position is in L2 or L3 then it can get algae, 
+    // otherwise it will ignore because there can't be an algate there. - TK
+    const [_, setReefPosition] = useEntry(coralEntry, '');
+
     const [selectedButton, setSelectedButton] = useState<number | null>(null);
 
     const handleButtonClick = (index: number) => {
         setSelectedButton(index);
     };
+
+    useEffect(() => {
+        if (selectedButton != null) {
+            const position = `L${4 - Math.floor(selectedButton / 2)}_${selectedButton % 2 === 0 ? 'L' : 'R'}`;
+            setReefPosition(position);
+        }
+    }, [selectedButton]);
 
     useEffect(() => {
         const keyMappings = [0, 2, 4, 6, 1, 3, 5, 7];
@@ -43,8 +58,6 @@ const ReefComponent = () => {
             </div>
         );
     };
-
-    const [gettingAlgae] = useEntry(gettingAlgaeEntry, false);
 
     return (
         <div style={{ maxWidth: '15vw', position: 'absolute', top: '12%', right: '0' }}>

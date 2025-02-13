@@ -3,7 +3,7 @@ export const robotConnected = '/FMSInfo/RobotState';
 export const botPose = '/SmartDashboard/Field/Robot';
 
 export const curVoltage = '/Dashboard/DS/voltage_d';
-export const minVoltage = 8;
+export const minVoltage = 10;
 
 export const alliance = '/FMSInfo/IsRed';
 

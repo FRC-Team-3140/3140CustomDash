@@ -94,28 +94,28 @@ const Dev: React.FC = () => {
                         className="toggle"
                         label="Test Swerve"
                         toggled={swerveToggled}
-                        ontoggle={() => {setSwerveToggled(!swerveToggled); swerveEntry(!swerveToggled)}}
+                        ontoggle={() => { setSwerveToggled(!swerveToggled); swerveEntry(!swerveToggled) }}
                     />
                     <ToggleButton
                         className="toggle"
                         label="Test Algae Intake"
                         toggled={algaeIntakeToggled}
-                        ontoggle={() => {setAlgaeIntakeToggled(!algaeIntakeToggled); algaeIntakeEntry(!algaeIntakeToggled)}} />
+                        ontoggle={() => { setAlgaeIntakeToggled(!algaeIntakeToggled); algaeIntakeEntry(!algaeIntakeToggled) }} />
                     <ToggleButton
                         className="toggle"
                         label="Test End Effector"
                         toggled={endEffectorToggled}
-                        ontoggle={() => {setEndEffectorToggled(!endEffectorToggled); endEffectorEntry(!endEffectorToggled)}} />
+                        ontoggle={() => { setEndEffectorToggled(!endEffectorToggled); endEffectorEntry(!endEffectorToggled) }} />
                     <ToggleButton
                         className="toggle"
                         label="Test Ground Intake"
                         toggled={groundIntakeToggled}
-                        ontoggle={() => {setGroundIntakeToggled(!groundIntakeToggled); groundIntakeEntry(!groundIntakeToggled)}}> </ToggleButton>
+                        ontoggle={() => { setGroundIntakeToggled(!groundIntakeToggled); groundIntakeEntry(!groundIntakeToggled) }}> </ToggleButton>
                     <ToggleButton
                         className="toggle"
                         label="Test Elevator"
                         toggled={elevatorToggled}
-                        ontoggle={() => {setElevatorToggled(!elevatorToggled); elevatorEntry(!elevatorToggled)}} />
+                        ontoggle={() => { setElevatorToggled(!elevatorToggled); elevatorEntry(!elevatorToggled) }} />
                 </div>
             </div>
             <hr />
@@ -129,23 +129,23 @@ const Dev: React.FC = () => {
                         className="toggle"
                         label="Ground Handoff"
                         toggled={algaeGroundIntakeToggled}
-                        ontoggle={() => {setAlgaeGroundIntakeToggled(!algaeGroundIntakeToggled); algaeGroundIntakeEntry(!algaeGroundIntakeToggled)}}
+                        ontoggle={() => { setAlgaeGroundIntakeToggled(!algaeGroundIntakeToggled); algaeGroundIntakeEntry(!algaeGroundIntakeToggled) }}
                     />
                     <ToggleButton
                         className="toggle"
                         label="Source Handoff"
                         toggled={sourceHandoffToggled}
-                        ontoggle={() => {setSourceHandoffToggled(!sourceHandoffToggled); sourceHandoffEntry(!sourceHandoffToggled)}} />
+                        ontoggle={() => { setSourceHandoffToggled(!sourceHandoffToggled); sourceHandoffEntry(!sourceHandoffToggled) }} />
                     <ToggleButton
                         className="toggle"
                         label="Algae Reef"
                         toggled={algaeReefToggled}
-                        ontoggle={() => {setAlgaeReefToggled(!algaeReefToggled); algaeReefEntry(!algaeReefToggled)}} />
+                        ontoggle={() => { setAlgaeReefToggled(!algaeReefToggled); algaeReefEntry(!algaeReefToggled) }} />
                     <ToggleButton
                         className="toggle"
                         label="Algae Ground"
                         toggled={algaeGroundToggled}
-                        ontoggle={() => {setAlgaeGroundToggled(!algaeGroundToggled); algaeGroundEntry(!algaeGroundToggled)}}> </ToggleButton>
+                        ontoggle={() => { setAlgaeGroundToggled(!algaeGroundToggled); algaeGroundEntry(!algaeGroundToggled) }}> </ToggleButton>
                 </div>
             </div>
             <hr />
@@ -155,9 +155,10 @@ const Dev: React.FC = () => {
                     cropLeft={0.1}
                     cropRight={0.9}
                     rotationUnit="deg"
+                    origin={allianceRed ? 'red' : 'blue'}
                     rotation={0}
                 >
-                    <FieldRobot color={allianceRed ? 'blue' : 'red'} opacity={1} pose={pose} />
+                    <FieldRobot color={allianceRed ? 'red' : 'blue'} opacity={1} pose={pose} />
                 </Field>
             </div>
         </>

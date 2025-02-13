@@ -47,18 +47,18 @@ const Auto: React.FC = () => {
                 origin={allianceRed ? 'red' : 'blue'}
                 rotation={0}
             >
-                <FieldRobot color={allianceRed ? 'blue' : 'red'} opacity={1} pose={pose} />
+                <FieldRobot color={allianceRed ? 'red' : 'blue'} opacity={1} pose={pose} />
             </Field>
             <div style={{ position: 'absolute', bottom: '4vh', left: '1vw', width: '25vw', margin: '1%' }}>
-                <style>{`
-                                                .volt {
-                                                    --frc-voltage-view-foreground-color:rgba(0, 255, 0, 0.2);
-                                                    --frc-bar-background: #444;
-                                                    --frc-bar-color: white;
-                                                    --frc-axis-text-color: white;
-                                                    width: 100%;
-                                                }
-                                            `}</style>
+                <style>{
+                    `.volt {
+                        --frc-voltage-view-foreground-color:rgba(0, 255, 0, 0.2);
+                        --frc-bar-background: #444;
+                        --frc-bar-color: white;
+                        --frc-axis-text-color: white;
+                        width: 100%;
+                    }`
+                }</style>
 
                 <VoltageView className='volt' value={voltage} min={0} max={13} numTickMarks={13} />
             </div>
