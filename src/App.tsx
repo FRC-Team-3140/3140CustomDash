@@ -1,9 +1,8 @@
-import { useEntry } from '@frc-web-components/react';
+import { BasicFmsInfo } from '@frc-web-components/fwc';
 import './App.css';
 import logo from './assets//FlagshipLineartIcon.png';
 import Dashboard from './components/Dashboard';
 import { DashboardThemes, darkTheme } from "@frc-web-components/fwc/themes";
-import { robotConnected } from './constants';
 
 
 function App() {
@@ -17,7 +16,7 @@ function App() {
 
   themes.setTheme(document.body, 'dark');
 
-  const [connected] = useEntry(robotConnected, false);
+  const connected = BasicFmsInfo.;
 
   return (
     <>

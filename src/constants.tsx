@@ -1,4 +1,4 @@
-export const robotConnected = '/FMSInfo/RobotState';
+export const robotConnected = '/Dasboard/DS/connected_s';
 
 export const botPose = '/SmartDashboard/Field/Robot';
 
