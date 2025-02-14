@@ -9,7 +9,8 @@ import Auto from './menus/Auto';
 import TeleOp from './menus/TeleOp';
 import Dev from './menus/Dev';
 import { useEntry } from '@frc-web-components/react';
-import { curVoltage, gameStage, minVoltage, robotConnected } from '../constants';
+import { curVoltage, gameStage, minVoltage } from '../constants';
+import { connected } from '../App';
 
 function CustomTabPanel(props: { [x: string]: any; children: any; value: any; index: any; }) {
     const { children, value, index, ...other } = props;
@@ -52,8 +53,6 @@ export default function BasicTabs() {
         },
     });
 
-    const [connected] = useEntry(robotConnected, false);
-
     const [currentVoltage] = useEntry(curVoltage, 0.0);
 
     let allianceBlue = true;
@@ -64,17 +63,17 @@ export default function BasicTabs() {
         setValue(newValue);
     };
 
-    const [gameStageValue] = useEntry(gameStage, '');
+    const [gameStageValue] = useEntry(gameStage, "");
 
     useEffect(() => {
         switch (gameStageValue) {
-            case 'AUTO':
+            case "AUTO":
                 setValue(0);
                 break;
-            case 'TELEOP':
+            case "TELEOP":
                 setValue(1);
                 break;
-            case 'DEV':
+            case "Dev":
                 setValue(2);
                 break;
             default:

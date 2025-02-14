@@ -5,6 +5,7 @@ import Dashboard from './components/Dashboard';
 import { DashboardThemes, darkTheme } from "@frc-web-components/fwc/themes";
 import { Client } from "wpilib-nt-client";
 
+export const [connected, setIsConnected] = useState(false);
 
 function App() {
   const customDarkTheme = {
@@ -17,7 +18,6 @@ function App() {
 
   themes.setTheme(document.body, 'dark');
 
-  const [connected, setIsConnected] = useState(false);
 
   useEffect(() => {
     const client = new Client(); // Initialize the Client
