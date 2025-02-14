@@ -21,7 +21,9 @@ function App() {
 
   useEffect(() => {
     const client = new Client(); // Initialize the Client
-
+    const interval = setInterval(()=>{
+      console.log("Me connected??");
+    }, 1000);
     // Replace with your robot's IP address
     const robotAddress = 'roborio-3140-frc.local';
 
@@ -31,11 +33,13 @@ function App() {
 
     // Clean up the client on unmount
     return () => {
+      clearInterval(interval);
       if (client) {
         client.stop(); // Properly stop the client
       }
     };
   }, []);
+  setInterval(()=>{})
 
   return (
     <>

@@ -36,7 +36,7 @@ const Auto: React.FC = () => {
         <>
             <div style={divStyles}>
                 <SendableChooser source-key="/Shuffleboard/Autonomous/SendableChooser[0]" style={{ width: '25vw', fontWeight: 'bold' }} />
-                <BasicFmsInfo source-key="/FMSInfo" style={{ width: '25vw', fontSize: '1.25vw' }} />
+                <BasicFmsInfo id="fmsInfo" source-key="/FMSInfo" style={{ width: '25vw', fontSize: '1.25vw' }} />
                 <div style={{ width: '25vw' }} />
             </div>
             <Field
