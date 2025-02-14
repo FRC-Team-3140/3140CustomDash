@@ -1,8 +1,9 @@
-import { BasicFmsInfo } from '@frc-web-components/fwc';
+import { useState, useEffect } from 'react';
 import './App.css';
 import logo from './assets//FlagshipLineartIcon.png';
 import Dashboard from './components/Dashboard';
 import { DashboardThemes, darkTheme } from "@frc-web-components/fwc/themes";
+import { Client } from "wpilib-nt-client";
 
 
 function App() {
@@ -16,7 +17,25 @@ function App() {
 
   themes.setTheme(document.body, 'dark');
 
-  const connected = BasicFmsInfo.;
+  const [connected, setIsConnected] = useState(false);
+
+  useEffect(() => {
+    const client = new Client(); // Initialize the Client
+
+    // Replace with your robot's IP address
+    const robotAddress = 'roborio-3140-frc.local';
+
+    client.start((connected) => {
+      setIsConnected(connected);
+    }, robotAddress);
+
+    // Clean up the client on unmount
+    return () => {
+      if (client) {
+        client.stop(); // Properly stop the client
+      }
+    };
+  }, []);
 
   return (
     <>

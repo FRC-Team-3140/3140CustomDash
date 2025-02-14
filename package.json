@@ -23,9 +23,11 @@
     "@types/node": "^22.13.1",
     "@webbitjs/store": "^5.8.0",
     "i": "^0.3.7",
+    "networktables": "^0.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "wpilib": "^0.0.0"
+    "wpilib": "^0.0.0",
+    "wpilib-nt-client": "^1.7.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
