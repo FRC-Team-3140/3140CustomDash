@@ -10,7 +10,6 @@ import TeleOp from './menus/TeleOp';
 import Dev from './menus/Dev';
 import { useEntry } from '@frc-web-components/react';
 import { curVoltage, gameStage, minVoltage } from '../constants';
-import { connected } from '../App';
 
 function CustomTabPanel(props: { [x: string]: any; children: any; value: any; index: any; }) {
     const { children, value, index, ...other } = props;
@@ -83,7 +82,7 @@ export default function BasicTabs() {
 
     const tabPanelStyles: CSSProperties = {
         height: 'fit-content',
-        backgroundColor: connected ? (currentVoltage <= minVoltage ? 'rgb(200, 0, 0)' : 'transparent') : 'transparent'
+        backgroundColor: currentVoltage <= minVoltage ? 'rgb(200, 0, 0)' : 'transparent'
     }
 
     return (

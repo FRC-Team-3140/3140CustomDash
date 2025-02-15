@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import logo from './assets//FlagshipLineartIcon.png';
+import logo from './assets/FlagshipLineartIcon.png';
 import Dashboard from './components/Dashboard';
 import { DashboardThemes, darkTheme } from "@frc-web-components/fwc/themes";
-import { Client } from "wpilib-nt-client";
-
-export const [connected, setIsConnected] = useState(false);
+import { rioPing } from './constants';
 
 function App() {
+  const [connected, setConnected] = useState(false);
+
   const customDarkTheme = {
     '--my-element-background': 'cadetblue',
     '--my-element-color': 'white',
@@ -18,24 +18,23 @@ function App() {
 
   themes.setTheme(document.body, 'dark');
 
-
   useEffect(() => {
-    const interval = setInterval(async ()=>{
-      try  {
-        await fetch("http://roborio-3140-frc.lan/", { mode: "no-cors", signal: AbortSignal.timeout(500)})
-        setIsConnected(true);
-      } catch(err) { 
-        setIsConnected(false);
+    const interval = setInterval(async () => {
+      try {
+        await fetch(rioPing, { mode: "no-cors", signal: AbortSignal.timeout(500) });
+        setConnected(true);
+        console.log("Magic happened: " + connected);
+      } catch (err) {
+        setConnected(false);
+        console.log("Magic didn't happen: " + connected);
       }
-      
     }, 1000);
 
     // Clean up the client on unmount
     return () => {
       clearInterval(interval);
     };
-  }, []);
-  setInterval(()=>{})
+  }, [connected]);
 
   return (
     <>

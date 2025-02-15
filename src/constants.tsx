@@ -1,4 +1,4 @@
-export const robotConnected = '/Dasboard/DS/connected_s';
+export const rioPing = 'http://roborio-3140-frc.lan/';
 
 export const botPose = '/SmartDashboard/Field/Robot';
 
