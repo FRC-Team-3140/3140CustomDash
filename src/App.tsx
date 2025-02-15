@@ -20,11 +20,15 @@ function App() {
 
 
   useEffect(() => {
-    const interval = setInterval(()=>{
-      console.log("Me connected??");
+    const interval = setInterval(async ()=>{
+      try  {
+        await fetch("http://roborio-3140-frc.lan/", { mode: "no-cors", signal: AbortSignal.timeout(500)})
+        setIsConnected(true);
+      } catch(err) { 
+        setIsConnected(false);
+      }
+      
     }, 1000);
-    // Replace with your robot's IP address
-    const robotAddress = 'roborio-3140-frc.local';
 
     // Clean up the client on unmount
     return () => {
