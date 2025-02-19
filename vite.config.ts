@@ -7,6 +7,9 @@ export default defineConfig({
   	server: {
     	open: false,
    		port: 3141,
+		watch: {
+			usePolling: true
+		}
   	},
 	
   	preview: {

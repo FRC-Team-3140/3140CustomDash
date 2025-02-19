@@ -1,13 +1,16 @@
-import { useState, useEffect, CSSProperties } from 'react';
+import { useEffect, CSSProperties } from 'react';
 import './App.css';
 import logo from './assets/FlagshipLineartIcon.png';
 import Dashboard from './components/Dashboard';
 import { DashboardThemes, darkTheme } from "@frc-web-components/fwc/themes";
-import { curVoltage, rioPing, minVoltage, manOverride } from './constants';
-import { useEntry } from '@frc-web-components/react';
+import { curVoltage, minVoltage, manOverride } from './constants';
+import { useEntry, useNt4} from '@frc-web-components/react';
+
 
 function App() {
-  const [connected, setConnected] = useState(false);
+   
+  const { nt4Provider } = useNt4();
+  let connected = nt4Provider.isConnected();
 
   const customDarkTheme = {
     '--my-element-background': 'cadetblue',
@@ -32,16 +35,7 @@ function App() {
   };
 
   useEffect(() => {
-    const interval = setInterval(async () => {
-      try {
-        await fetch(rioPing, { mode: "no-cors", signal: AbortSignal.timeout(500) });
-        setConnected(true);
-        console.log("Magic happened: " + connected);
-      } catch (err) {
-        setConnected(false);
-        console.log("Magic didn't happen: " + connected);
-      }
-    }, 1000);
+    const interval = setInterval(async () => connected = nt4Provider.isConnected(), 750);
 
     // Clean up the client on unmount
     return () => {

@@ -2,7 +2,7 @@ import {
     useEntry,
     ToggleButton,
     Field,
-    FieldRobot
+    FieldRobot,
 } from '@frc-web-components/react';
 import React, { CSSProperties, useEffect } from 'react';
 import '../../devToggleBtn.css';
