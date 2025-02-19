@@ -1,4 +1,4 @@
-import { useEffect, CSSProperties } from 'react';
+import { useEffect, CSSProperties, useState } from 'react';
 import './App.css';
 import logo from './assets/FlagshipLineartIcon.png';
 import Dashboard from './components/Dashboard';
@@ -10,7 +10,7 @@ import { useEntry, useNt4} from '@frc-web-components/react';
 function App() {
    
   const { nt4Provider } = useNt4();
-  let connected = nt4Provider.isConnected();
+  let [connected, setConnected] = useState(false);
 
   const customDarkTheme = {
     '--my-element-background': 'cadetblue',
@@ -33,9 +33,9 @@ function App() {
     left: '0',
     backgroundColor: (connected && currentVoltage <= minVoltage) ? 'rgb(200, 0, 0)' : 'transparent'
   };
-
+  // TODO: why doesn't this change dynamically?
   useEffect(() => {
-    const interval = setInterval(async () => connected = nt4Provider.isConnected(), 750);
+    const interval = setInterval(async () => setConnected(nt4Provider.isConnected()), 750);
 
     // Clean up the client on unmount
     return () => {
