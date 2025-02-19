@@ -1,5 +1,7 @@
 export const rioPing = 'http://roborio-3140-frc.lan/';
 
+export const autonomousChooser = '/Shuffleboard/Autonomous/SendableChooser[0]';
+
 export const botPose = '/SmartDashboard/Field/Robot';
 
 export const curVoltage = '/Dashboard/DS/voltage_d';
@@ -8,6 +10,8 @@ export const minVoltage = 10;
 export const alliance = '/FMSInfo/IsRed';
 
 export const gameStage = '/Dashboard/DS/state_s';
+
+export const manOverride = '/Dashboard/Misc/driveManualMode_b';
 
 // Reef Entries
 // TODO: Implement Coral functionality in Robot Code & in reef component

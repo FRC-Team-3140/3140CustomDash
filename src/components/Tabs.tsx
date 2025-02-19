@@ -9,7 +9,7 @@ import Auto from './menus/Auto';
 import TeleOp from './menus/TeleOp';
 import Dev from './menus/Dev';
 import { useEntry } from '@frc-web-components/react';
-import { curVoltage, gameStage, minVoltage } from '../constants';
+import { gameStage } from '../constants';
 
 function CustomTabPanel(props: { [x: string]: any; children: any; value: any; index: any; }) {
     const { children, value, index, ...other } = props;
@@ -52,8 +52,6 @@ export default function BasicTabs() {
         },
     });
 
-    const [currentVoltage] = useEntry(curVoltage, 0.0);
-
     let allianceBlue = true;
 
     const [value, setValue] = React.useState(0);
@@ -82,7 +80,7 @@ export default function BasicTabs() {
 
     const tabPanelStyles: CSSProperties = {
         height: 'fit-content',
-        backgroundColor: currentVoltage <= minVoltage ? 'rgb(200, 0, 0)' : 'transparent'
+        width: '100%'
     }
 
     return (
