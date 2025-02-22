@@ -22,6 +22,9 @@ export const manOverride = '/Dashboard/Misc/driveManualMode_b';
 export const coralEntry = '/Dashboard/coral'
 export const gettingAlgaeEntry = '/ROBOTINFO/GettingAlgae';
 
+// Camera Streams (MJPEG)
+export const cameraStream = '/sensors3140/streams/Camera 1 Streaming Task/url';
+
 // Dev Buttons
 export const devSwerve = '/Dashboard/Dev/Swerve_b';
 export const devAlgaeIntake = '/Dashboard/Dev/Algae Intake_b';

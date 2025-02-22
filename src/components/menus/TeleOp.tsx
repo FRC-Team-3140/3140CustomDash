@@ -9,7 +9,7 @@ import {
 } from '@frc-web-components/react';
 import React, { CSSProperties } from 'react';
 import ReefComponent from '../Reef';
-import { alliance, botPose, curVoltage } from '../../constants';
+import { alliance, botPose, cameraStream, curVoltage } from '../../constants';
 
 const TeleOp: React.FC = () => {
     const [pose] = useEntry(botPose, [0, 0, 0]);
@@ -28,12 +28,12 @@ const TeleOp: React.FC = () => {
             <div style={{ position: 'absolute', left: '0', bottom: '50%', minWidth: 'fit-content', minHeight: 'fit-content', maxWidth: '50vw', transform: 'translate(0%, 50%)', marginLeft: '2%', display: 'flex' }}>
                 <div style={{ paddingRight: '2%', margin: '0' }}>
                     <Canvas backgroundColor='rgba(0, 0, 0, 0.0)'>
-                        <CanvasMjpgStream origin={[0, 0]} crosshairColor="white" srcs={['SmartDashboard/Camera']} />
+                        <CanvasMjpgStream origin={[0, 0]} crosshairColor="white" srcs={[cameraStream]} />
                     </Canvas>
                 </div>
                 <div style={{ padding: '0', margin: '0' }}>
                     <Canvas backgroundColor='rgba(0, 0, 0, 0.0)'>
-                        <CanvasMjpgStream origin={[0, 0]} crosshairColor="white" srcs={['SmartDashboard/Camera']} />
+                        <CanvasMjpgStream origin={[0, 0]} crosshairColor="white" srcs={[cameraStream]} />
                     </Canvas>
                 </div>
             </div>
