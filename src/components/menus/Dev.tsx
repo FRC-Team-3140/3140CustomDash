@@ -6,7 +6,7 @@ import {
 } from '@frc-web-components/react';
 import React, { CSSProperties, useEffect } from 'react';
 import '../../devToggleBtn.css';
-import { alliance, botPose, devAlgaeGround, devAlgaeGroundIntake, devAlgaeIntake, devAlgaeReef, devElevator, devEndEffector, devGroundIntake, devSourceHandoff, devSwerve } from '../../constants';
+import { alliance, botPose, devAlgaeGround, devAlgaeGroundIntake, devAlgaeIntake, devAlgaeReef, devElevator, devEndEffector, devGroundIntake, devSourceHandoff, devSwerve, runningCommandEntry, runningCommandStatusEntry } from '../../constants';
 
 const Dev: React.FC = () => {
 
@@ -63,6 +63,7 @@ const Dev: React.FC = () => {
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
             if (event.key === 'r') {
+                // States 
                 setSwerveToggled(false);
                 setAlgaeIntakeToggled(false);
                 setEndEffectorToggled(false);
@@ -72,6 +73,17 @@ const Dev: React.FC = () => {
                 setSourceHandoffToggled(false);
                 setAlgaeReefToggled(false);
                 setAlgaeGroundToggled(false);
+
+                // Networktable Entries
+                swerveEntry(false);
+                algaeIntakeEntry(false);
+                endEffectorEntry(false);
+                groundIntakeEntry(false);
+                elevatorEntry(false);
+                algaeGroundIntakeEntry(false);
+                sourceHandoffEntry(false);
+                algaeReefEntry(false);
+                algaeGroundEntry(false);
             }
         };
 
@@ -80,6 +92,29 @@ const Dev: React.FC = () => {
             window.removeEventListener('keydown', handleKeyDown);
         };
     }, []);
+
+    const runningCommand = useEntry(runningCommandEntry, [])[0];
+    const runningCommandStatus = useEntry(runningCommandStatusEntry, [])[0];
+
+    useEffect(() => {
+        // 0 - ended, 1 - running, 2 - interrupted
+        const commandsLog = document.getElementById('commandsLog');
+
+        if (commandsLog) {
+            commandsLog.innerHTML = '';
+            for (let i = 0; i < runningCommand.length; i++) {
+                const commandElement = document.createElement('p');
+                commandElement.textContent = `${runningCommand[i]}`;
+                commandElement.style.color = runningCommandStatus[i] === 0 ? 'white' : (runningCommandStatus[i] === 1 ? 'green' : 'red');
+                commandElement.style.margin = '1vh';
+                commandsLog.appendChild(commandElement);
+            }
+        }
+
+        if (commandsLog) {
+            commandsLog.scrollTop = commandsLog.scrollHeight;
+        }
+    }, [runningCommand, runningCommandStatus]);
 
     return (
         <>
@@ -160,6 +195,11 @@ const Dev: React.FC = () => {
                 >
                     <FieldRobot color={allianceRed ? 'red' : 'blue'} opacity={1} pose={pose} />
                 </Field>
+            </div>
+            <hr />
+            <div style={{ ...divStyles, width: '100%', justifyContent: 'center', margin: '4vh 0 4vh 0' }}>
+                <h2 id='temp'></h2>
+                <div id='commandsLog' style={{ height: '50vh', width: '80vw', backgroundColor: 'black', border: '1px solid white', borderRadius: '5px', maxHeight: '50vh', overflow: 'auto', fontFamily: 'monospace', color: 'white', padding: '1vw' }}></div>
             </div>
         </>
     );

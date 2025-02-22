@@ -2,6 +2,9 @@ export const rioPing = 'http://roborio-3140-frc.lan/';
 
 export const autonomousChooser = '/Shuffleboard/Autonomous/SendableChooser[0]';
 
+export const runningCommandEntry = '/Dashboard/commands_sa';
+export const runningCommandStatusEntry = '/Dashboard/commandStatuses_ia';
+
 export const botPose = '/SmartDashboard/Field/Robot';
 
 export const curVoltage = '/Dashboard/DS/voltage_d';
