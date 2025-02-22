@@ -1,4 +1,4 @@
-export const robotIPAddress = '10.31.40.85';
+export const robotIPAddress = '10.31.40.2';
 
 export const autonomousChooser = '/Shuffleboard/Autonomous/SendableChooser[0]';
 
@@ -23,7 +23,8 @@ export const coralEntry = '/Dashboard/coral'
 export const gettingAlgaeEntry = '/ROBOTINFO/GettingAlgae';
 
 // Camera Streams (MJPEG)
-export const cameraStream = '/sensors3140/streams/Camera 1 Streaming Task/url';
+export const cameraStream0 = '/sensors3140/streams/Camera 0 Streaming Task/url';
+export const cameraStream2 = '/sensors3140/streams/Camera 2 Streaming Task/url';
 
 // Dev Buttons
 export const devSwerve = '/Dashboard/Dev/Swerve_b';
