@@ -6,6 +6,7 @@ export const runningCommandEntry = '/Dashboard/commands_sa';
 export const runningCommandStatusEntry = '/Dashboard/commandStatuses_ia';
 
 export const botPose = '/SmartDashboard/Field/Robot';
+export const cameraPose = '/SmartDashboard/Field/RobotCamera';
 
 export const curVoltage = '/Dashboard/DS/voltage_d';
 export const minVoltage = 10;
