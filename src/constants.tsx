@@ -1,5 +1,3 @@
-export const rioPing = 'http://roborio-3140-frc.lan/';
-
 export const autonomousChooser = '/Shuffleboard/Autonomous/SendableChooser[0]';
 
 export const runningCommandEntry = '/Dashboard/commands_sa';
