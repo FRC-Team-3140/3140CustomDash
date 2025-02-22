@@ -16,6 +16,8 @@ const TeleOp: React.FC = () => {
 
     const [voltage] = useEntry(curVoltage, 0.0);
 
+    const [camera] = useEntry(cameraStream, '');
+
     const fieldStyles: CSSProperties = {
         height: '35vh'
     };
@@ -28,12 +30,12 @@ const TeleOp: React.FC = () => {
             <div style={{ position: 'absolute', left: '0', bottom: '50%', minWidth: 'fit-content', minHeight: 'fit-content', maxWidth: '50vw', transform: 'translate(0%, 50%)', marginLeft: '2%', display: 'flex' }}>
                 <div style={{ paddingRight: '2%', margin: '0' }}>
                     <Canvas backgroundColor='rgba(0, 0, 0, 0.0)'>
-                        <CanvasMjpgStream origin={[0, 0]} crosshairColor="white" srcs={[cameraStream]} />
+                        <CanvasMjpgStream origin={[0, 0]} crosshairColor="white" srcs={[camera]} />
                     </Canvas>
                 </div>
                 <div style={{ padding: '0', margin: '0' }}>
                     <Canvas backgroundColor='rgba(0, 0, 0, 0.0)'>
-                        <CanvasMjpgStream origin={[0, 0]} crosshairColor="white" srcs={[cameraStream]} />
+                        <CanvasMjpgStream origin={[0, 0]} crosshairColor="white" srcs={[camera]} />
                     </Canvas>
                 </div>
             </div>
