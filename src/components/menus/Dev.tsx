@@ -3,6 +3,7 @@ import {
     ToggleButton,
     Field,
     FieldRobot,
+    Logger,
 } from '@frc-web-components/react';
 import React, { CSSProperties, useEffect } from 'react';
 import '../../devToggleBtn.css';
@@ -99,21 +100,23 @@ const Dev: React.FC = () => {
 
     useEffect(() => {
         // 0 - ended, 1 - running, 2 - interrupted
-        const commandsLog = document.getElementById('commandsLog');
+        if (runningCommand.length > 0) {
+            const commandsLog = document.getElementById('commandsLog');
 
-        if (commandsLog) {
-            commandsLog.innerHTML = '';
-            for (let i = 0; i < runningCommand.length; i++) {
-                const commandElement = document.createElement('p');
-                commandElement.textContent = `${runningCommand[i]}`;
-                commandElement.style.color = runningCommandStatus[i] === 0 ? 'white' : (runningCommandStatus[i] === 1 ? 'green' : 'red');
-                commandElement.style.margin = '1vh';
-                commandsLog.appendChild(commandElement);
+            if (commandsLog) {
+                commandsLog.innerHTML = '';
+                for (let i = 0; i < runningCommand.length; i++) {
+                    const commandElement = document.createElement('p');
+                    commandElement.textContent = `${runningCommand[i]}`;
+                    commandElement.style.color = runningCommandStatus[i] === 0 ? 'white' : (runningCommandStatus[i] === 1 ? 'green' : 'red');
+                    commandElement.style.margin = '1vh';
+                    commandsLog.appendChild(commandElement);
+                }
             }
-        }
 
-        if (commandsLog) {
-            commandsLog.scrollTop = commandsLog.scrollHeight;
+            if (commandsLog) {
+                commandsLog.scrollTop = commandsLog.scrollHeight;
+            }
         }
     }, [runningCommand, runningCommandStatus]);
 
@@ -199,9 +202,23 @@ const Dev: React.FC = () => {
                 </Field>
             </div>
             <hr />
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <label htmlFor="numberInput" style={{ marginBottom: '5px', color: 'white' }}>Commands to log:</label>
+                <input
+                    id="numberInput"
+                    type="number"
+                    defaultValue={0}
+                    style={{ textAlign: 'center', width: '8vw', color: 'white', backgroundColor: 'black', border: '1px solid white', borderRadius:'5px' }}
+                />
+            </div>
             <div style={{ ...divStyles, width: '100%', justifyContent: 'center', margin: '4vh 0 4vh 0' }}>
-                <h2 id='temp'></h2>
-                <div id='commandsLog' style={{ height: '50vh', width: '80vw', backgroundColor: 'black', border: '1px solid white', borderRadius: '5px', maxHeight: '50vh', overflow: 'auto', fontFamily: 'monospace', color: 'white', padding: '1vw' }}></div>
+                <div id='commandsLog' style={{ height: '50vh', width: '40vw', backgroundColor: 'black', border: '1px solid white', borderRadius: '5px', maxHeight: '50vh', overflow: 'auto', fontFamily: 'monospace', color: 'white', padding: '1vw' }}>
+                    {/* VV Will get cleared when the network tables connect and commands are sent accross VV */}
+                    <p>=== Commands Log ===</p>
+                </div>
+                <div style={{ height: '50vh', width: '40vw', backgroundColor: 'black', border: '1px solid white', borderRadius: '5px', maxHeight: '50vh', overflow: 'auto', fontFamily: 'monospace', color: 'white', padding: '1vw' }}>
+                    <Logger />
+                </div>
             </div>
         </>
     );

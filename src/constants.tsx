@@ -1,4 +1,4 @@
-export const robotIPAddress = '10.31.40.2';
+export const robotIPAddress = 'localhost';
 
 export const autonomousChooser = '/Shuffleboard/Autonomous/SendableChooser[0]';
 
