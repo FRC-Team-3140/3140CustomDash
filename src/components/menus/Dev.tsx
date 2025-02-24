@@ -4,10 +4,11 @@ import {
     Field,
     FieldRobot,
     Logger,
+    Swerve,
 } from '@frc-web-components/react';
 import React, { CSSProperties, useEffect } from 'react';
 import '../../devToggleBtn.css';
-import { alliance, botPose, cameraPose, devAlgaeGround, devAlgaeGroundIntake, devAlgaeIntake, devAlgaeReef, devElevator, devEndEffector, devGroundIntake, devSourceHandoff, devSwerve, runningCommandEntry, runningCommandStatusEntry } from '../../constants';
+import { alliance, botPose, cameraPose, devAlgaeGround, devAlgaeGroundIntake, devAlgaeIntake, devAlgaeReef, devElevator, devEndEffector, devGroundIntake, devSourceHandoff, devSwerve, runningCommandEntry, runningCommandStatusEntry, numLogged } from '../../constants';
 
 const Dev: React.FC = () => {
 
@@ -98,6 +99,8 @@ const Dev: React.FC = () => {
     const runningCommand = useEntry(runningCommandEntry, [])[0];
     const runningCommandStatus = useEntry(runningCommandStatusEntry, [])[0];
 
+    const [numOLoggedCmds, setNumOLoggedCmds] = useEntry(numLogged, 50);
+
     useEffect(() => {
         // 0 - ended, 1 - running, 2 - interrupted
         if (runningCommand.length > 0) {
@@ -120,6 +123,12 @@ const Dev: React.FC = () => {
         }
     }, [runningCommand, runningCommandStatus]);
 
+    const [botRotate, setBotRotate] = React.useState<boolean>(true);
+
+    useEffect(() => {
+        console.log(botRotate);
+    }, [botRotate]);
+
     return (
         <>
             <hr />
@@ -133,8 +142,7 @@ const Dev: React.FC = () => {
                         className="toggle"
                         label="Test Swerve"
                         toggled={swerveToggled}
-                        ontoggle={() => { setSwerveToggled(!swerveToggled); swerveEntry(!swerveToggled) }}
-                    />
+                        ontoggle={() => { setSwerveToggled(!swerveToggled); swerveEntry(!swerveToggled) }} />
                     <ToggleButton
                         className="toggle"
                         label="Test Algae Intake"
@@ -149,7 +157,7 @@ const Dev: React.FC = () => {
                         className="toggle"
                         label="Test Ground Intake"
                         toggled={groundIntakeToggled}
-                        ontoggle={() => { setGroundIntakeToggled(!groundIntakeToggled); groundIntakeEntry(!groundIntakeToggled) }}> </ToggleButton>
+                        ontoggle={() => { setGroundIntakeToggled(!groundIntakeToggled); groundIntakeEntry(!groundIntakeToggled) }} />
                     <ToggleButton
                         className="toggle"
                         label="Test Elevator"
@@ -168,8 +176,7 @@ const Dev: React.FC = () => {
                         className="toggle"
                         label="Ground Handoff"
                         toggled={algaeGroundIntakeToggled}
-                        ontoggle={() => { setAlgaeGroundIntakeToggled(!algaeGroundIntakeToggled); algaeGroundIntakeEntry(!algaeGroundIntakeToggled) }}
-                    />
+                        ontoggle={() => { setAlgaeGroundIntakeToggled(!algaeGroundIntakeToggled); algaeGroundIntakeEntry(!algaeGroundIntakeToggled) }} />
                     <ToggleButton
                         className="toggle"
                         label="Source Handoff"
@@ -184,7 +191,7 @@ const Dev: React.FC = () => {
                         className="toggle"
                         label="Algae Ground"
                         toggled={algaeGroundToggled}
-                        ontoggle={() => { setAlgaeGroundToggled(!algaeGroundToggled); algaeGroundEntry(!algaeGroundToggled) }}> </ToggleButton>
+                        ontoggle={() => { setAlgaeGroundToggled(!algaeGroundToggled); algaeGroundEntry(!algaeGroundToggled) }} />
                 </div>
             </div>
             <hr />
@@ -207,8 +214,9 @@ const Dev: React.FC = () => {
                 <input
                     id="numberInput"
                     type="number"
-                    defaultValue={0}
-                    style={{ textAlign: 'center', width: '8vw', color: 'white', backgroundColor: 'black', border: '1px solid white', borderRadius:'5px' }}
+                    defaultValue={numOLoggedCmds}
+                    onChange={(e) => setNumOLoggedCmds(Number(e.target.value))}
+                    style={{ textAlign: 'center', width: '8vw', color: 'white', backgroundColor: 'black', border: '1px solid white', borderRadius: '5px' }}
                 />
             </div>
             <div style={{ ...divStyles, width: '100%', justifyContent: 'center', margin: '4vh 0 4vh 0' }}>
@@ -217,7 +225,16 @@ const Dev: React.FC = () => {
                     <p>=== Commands Log ===</p>
                 </div>
                 <div style={{ height: '50vh', width: '40vw', backgroundColor: 'black', border: '1px solid white', borderRadius: '5px', maxHeight: '50vh', overflow: 'auto', fontFamily: 'monospace', color: 'white', padding: '1vw' }}>
-                    <Logger />
+                    <Logger title="Robot Logger" maxLogCount={numOLoggedCmds} level="debug" />
+                </div>
+            </div>
+            <div style={{ display: 'flex', width: '100%' }}>
+                <h2 style={{ position: 'absolute', left: '50%', transform: 'translate(-50%, 0)' }}>0deg</h2>
+                <ToggleButton label='Allow Bot Rotate' style={{ width: '10vw', marginLeft: '65%' }} toggled={botRotate} ontoggle={() => setBotRotate(!botRotate)} />
+            </div>
+            <div style={divStyles}>
+                <div style={{ ...divStyles, width: '100%', justifyContent: 'center', margin: '4vh 0 4vh 0' }}>
+                    <Swerve module-count="4" wheel-locations="[1, 1, 1, -1, -1, 1,-1, -1]" measured-states="[0,0,0,0,0,0,0,0]" desired-states="[0,0,0,0,0,0,0,0]" robot-rotation="0" max-speed="1" rotation-unit="degrees" size-left-right="4" size-front-back="4" />
                 </div>
             </div>
         </>
