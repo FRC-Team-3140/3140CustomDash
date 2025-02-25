@@ -8,7 +8,7 @@ import {
 } from '@frc-web-components/react';
 import React, { CSSProperties, useEffect } from 'react';
 import '../../devToggleBtn.css';
-import { alliance, botPose, cameraPose, devAlgaeGround, devAlgaeGroundIntake, devAlgaeIntake, devAlgaeReef, devElevator, devEndEffector, devGroundIntake, devSourceHandoff, devSwerve, runningCommandEntry, runningCommandStatusEntry, numLogged } from '../../constants';
+import { alliance, botPose, cameraPose, devAlgaeGround, devAlgaeGroundIntake, devAlgaeIntake, devAlgaeReef, devElevator, devEndEffector, devGroundIntake, devSourceHandoff, devSwerve, runningCommandEntry, runningCommandStatusEntry, numLogged, swerveMeasuredStates_sa, swerveDesiredStates_sa, botRotDeg, maxVelo } from '../../constants';
 
 const Dev: React.FC = () => {
 
@@ -129,6 +129,15 @@ const Dev: React.FC = () => {
         console.log(botRotate);
     }, [botRotate]);
 
+    const [maxSpeed] = useEntry(maxVelo, 0.0);
+    const [botRot] = useEntry(botRotDeg, 25.0);
+    const [measured] = useEntry(swerveMeasuredStates_sa, [0, 0, 0, 0, 0, 0, 0, 0]);
+    const [desired] = useEntry(swerveDesiredStates_sa, [0, 0, 0, 0, 0, 0, 0, 0]);
+
+    useEffect(() => {
+        console.log(measured + "\n" + desired + "\n" + botRot);
+    }, [measured, desired, botRot]);
+
     return (
         <>
             <hr />
@@ -229,12 +238,12 @@ const Dev: React.FC = () => {
                 </div>
             </div>
             <div style={{ display: 'flex', width: '100%' }}>
-                <h2 style={{ position: 'absolute', left: '50%', transform: 'translate(-50%, 0)' }}>0deg</h2>
+                <h2 style={{ position: 'absolute', left: '50%', transform: 'translate(-50%, 0)' }}>{botRot} deg</h2>
                 <ToggleButton label='Allow Bot Rotate' style={{ width: '10vw', marginLeft: '65%' }} toggled={botRotate} ontoggle={() => setBotRotate(!botRotate)} />
             </div>
             <div style={divStyles}>
                 <div style={{ ...divStyles, width: '100%', justifyContent: 'center', margin: '4vh 0 4vh 0' }}>
-                    <Swerve module-count="4" wheel-locations="[1, 1, 1, -1, -1, 1,-1, -1]" measured-states="[0,0,0,0,0,0,0,0]" desired-states="[0,0,0,0,0,0,0,0]" robot-rotation="0" max-speed="1" rotation-unit="degrees" size-left-right="4" size-front-back="4" />
+                    <Swerve moduleCount={4} wheelLocations={[1, 1, 1, -1, -1, 1, -1, -1]} measuredStates={measured} desiredStates={desired} robotRotation={botRot} maxSpeed={maxSpeed} rotationUnit="degrees" sizeLeftRight={4} sizeFrontBack={4} />
                 </div>
             </div>
         </>

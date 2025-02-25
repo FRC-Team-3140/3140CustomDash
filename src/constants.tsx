@@ -1,4 +1,4 @@
-export const robotIPAddress = '10.31.40.2';
+export const robotIPAddress = 'localhost';
 
 export const autonomousChooser = '/Shuffleboard/Autonomous/SendableChooser[0]';
 
@@ -28,9 +28,10 @@ export const cameraStream2 = '/sensors3140/streams/Camera 2 Streaming Task/url';
 
 export const numLogged = '/Dashboard/Dev/numOLoggedCmds_i';
 
-export const swerveMeasuredStates = '/Dashborad/Dev/measuredStates_a';
-export const swerveDesiredStates = '/Dashborad/Dev/desiredStates_a';
+export const maxVelo = '/Dashboard/Dev/maxVelo_d'
 export const botRotDeg = '/Dashboard/Dev/botRotDeg_d';
+export const swerveMeasuredStates_sa = '/Dashboard/Dev/measuredStates_da';
+export const swerveDesiredStates_sa = '/Dashboard/Dev/desiredStates_da';
 
 // Dev Buttons
 export const devSwerve = '/Dashboard/Dev/Swerve_b';
