@@ -134,10 +134,6 @@ const Dev: React.FC = () => {
     const [measured] = useEntry(swerveMeasuredStates_sa, [0, 0, 0, 0, 0, 0, 0, 0]);
     const [desired] = useEntry(swerveDesiredStates_sa, [0, 0, 0, 0, 0, 0, 0, 0]);
 
-    useEffect(() => {
-        console.log(measured + "\n" + desired + "\n" + botRot);
-    }, [measured, desired, botRot]);
-
     return (
         <>
             <hr />
@@ -238,12 +234,12 @@ const Dev: React.FC = () => {
                 </div>
             </div>
             <div style={{ display: 'flex', width: '100%' }}>
-                <h2 style={{ position: 'absolute', left: '50%', transform: 'translate(-50%, 0)' }}>{botRot ? botRot : 0} deg</h2>
+                <h2 style={{ position: 'absolute', left: '50%', transform: 'translate(-50%, 0)' }}>{botRotate ? botRot : 0} deg</h2>
                 <ToggleButton label='Allow Bot Rotate' style={{ width: '10vw', marginLeft: '65%' }} toggled={botRotate} ontoggle={() => setBotRotate(!botRotate)} />
             </div>
             <div style={divStyles}>
                 <div style={{ ...divStyles, width: '100%', justifyContent: 'center', margin: '4vh 0 4vh 0' }}>
-                    <Swerve moduleCount={4} wheelLocations={[1, 1, 1, -1, -1, 1, -1, -1]} measuredStates={measured} desiredStates={desired} robotRotation={botRot ? botRot : 0} maxSpeed={maxSpeed} rotationUnit="degrees" sizeLeftRight={4} sizeFrontBack={4} />
+                    <Swerve moduleCount={4} wheelLocations={[1, 1, 1, -1, -1, 1, -1, -1]} measuredStates={measured} desiredStates={desired} robotRotation={botRotate ? botRot : 0} maxSpeed={maxSpeed} rotationUnit="degrees" sizeLeftRight={4} sizeFrontBack={4} />
                 </div>
             </div>
         </>
