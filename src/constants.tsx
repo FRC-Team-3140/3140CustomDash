@@ -1,6 +1,6 @@
 export const robotIPAddress = '10.31.40.2';
 
-export const autonomousChooser = '/Shuffleboard/Autonomous/SendableChooser[0]';
+export const autonomousChooser = '/SmartDashboard/Path planner';
 
 export const runningCommandEntry = '/Dashboard/commands_sa';
 export const runningCommandStatusEntry = '/Dashboard/commandStatuses_ia';
