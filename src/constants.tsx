@@ -1,4 +1,4 @@
-export const robotIPAddress = '10.31.40.2';
+export const robotIPAddress = 'localhost';
 
 export const autonomousChooser = '/SmartDashboard/Path planner';
 
@@ -9,7 +9,7 @@ export const botPose = '/SmartDashboard/Field/Robot';
 export const cameraPose = '/SmartDashboard/Field/RobotCamera';
 
 export const curVoltage = '/Dashboard/DS/voltage_d';
-export const minVoltage = 10;
+export const minVoltage = 8;
 
 export const alliance = '/FMSInfo/IsRed';
 
@@ -43,3 +43,4 @@ export const devAlgaeGroundIntake = '/Dashboard/Dev/Ground Handoff_b';
 export const devSourceHandoff = '/Dashboard/Dev/Source Handoff_b';
 export const devAlgaeReef = '/Dashboard/Dev/Algae Reef_b';
 export const devAlgaeGround = '/Dashboard/Dev/Algae Ground_b';
+export const devElevatorHome = '/Dashboard/Dev/Home Elevator Button_b';
