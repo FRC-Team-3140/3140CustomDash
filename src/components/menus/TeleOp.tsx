@@ -46,7 +46,7 @@ const TeleOp: React.FC = () => {
                     cropLeft={0.1}
                     cropRight={0.9}
                     rotationUnit="deg"
-                    origin={allianceRed ? 'red' : 'blue'}
+                    origin="blue"
                     rotation={allianceRed ? 0 : 180}
                 >
                     <FieldRobot color={allianceRed ? 'red' : 'blue'} opacity={1} pose={pose} />
