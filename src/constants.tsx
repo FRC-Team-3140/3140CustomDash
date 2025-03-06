@@ -1,6 +1,8 @@
 export const robotIPAddress = '10.31.40.2';
 
-export const autonomousChooser = '/SmartDashboard/Path planner';
+export const reefSideChooser = '/SmartDashboard/Starting Side';
+export const reefLevelChooser = '/SmartDashboard/Reef Level';
+export const cycleDirectionChooser = '/SmartDashboard/Cycle Direction';
 
 export const runningCommandEntry = '/Dashboard/commands_sa';
 export const runningCommandStatusEntry = '/Dashboard/commandStatuses_ia';

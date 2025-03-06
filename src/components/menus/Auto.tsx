@@ -7,7 +7,7 @@ import {
     VoltageView
 } from '@frc-web-components/react';
 import React, { CSSProperties } from 'react';
-import { alliance, botPose, curVoltage, autonomousChooser } from '../../constants';
+import { alliance, botPose, curVoltage, reefSideChooser, reefLevelChooser, cycleDirectionChooser } from '../../constants';
 
 const Auto: React.FC = () => {
     const [pose] = useEntry(botPose, [0, 0, 0]);
@@ -35,7 +35,11 @@ const Auto: React.FC = () => {
     return (
         <>
             <div style={divStyles}>
-                <SendableChooser source-key={autonomousChooser} style={{ width: '25vw', fontWeight: 'bold' }} />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    <SendableChooser source-key={reefSideChooser} style={{ width: '25vw', fontWeight: 'bold' }} label='Side' />
+                    <SendableChooser source-key={reefLevelChooser} style={{ width: '25vw', fontWeight: 'bold' }} label='Level' />
+                    <SendableChooser source-key={cycleDirectionChooser} style={{ width: '25vw', fontWeight: 'bold' }} label='Direction' />
+                </div>
                 <BasicFmsInfo id="fmsInfo" source-key="/FMSInfo" style={{ width: '25vw', fontSize: '1.25vw' }} />
                 <div style={{ width: '25vw' }} />
             </div>
