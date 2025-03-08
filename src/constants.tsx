@@ -8,7 +8,9 @@ export const runningCommandEntry = '/Dashboard/commands_sa';
 export const runningCommandStatusEntry = '/Dashboard/commandStatuses_ia';
 
 export const botPose = '/SmartDashboard/Field/Robot';
-export const cameraPose = '/Dashboard/Dev/cameraPose_ab';
+export const avgCameraPose = '/Dashboard/Dev/cameraPose_ad';
+export const frontCameraPose = '/Dashboard/Dev/frontCameraPose_ad';
+export const backCameraPose = '/Dashboard/Dev/backCameraPose_ad';
 
 export const curVoltage = '/Dashboard/DS/voltage_d';
 export const minVoltage = 8;

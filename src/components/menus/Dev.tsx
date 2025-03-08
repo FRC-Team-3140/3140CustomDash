@@ -8,12 +8,14 @@ import {
 } from '@frc-web-components/react';
 import React, { CSSProperties, useEffect } from 'react';
 import '../../devToggleBtn.css';
-import { alliance, botPose, cameraPose, devAlgaeGround, devAlgaeGroundIntake, devAlgaeIntake, devAlgaeReef, devElevator, devEndEffector, devGroundIntake, devSourceHandoff, devSwerve, runningCommandEntry, runningCommandStatusEntry, numLogged, swerveMeasuredStates_sa, swerveDesiredStates_sa, botRotDeg, maxVelo, devElevatorHome } from '../../constants';
+import { alliance, botPose, avgCameraPose, frontCameraPose, backCameraPose, devAlgaeGround, devAlgaeGroundIntake, devAlgaeIntake, devAlgaeReef, devElevator, devEndEffector, devGroundIntake, devSourceHandoff, devSwerve, runningCommandEntry, runningCommandStatusEntry, numLogged, swerveMeasuredStates_sa, swerveDesiredStates_sa, botRotDeg, maxVelo, devElevatorHome } from '../../constants';
 
 const Dev: React.FC = () => {
 
     const [pose] = useEntry(botPose, [0, 0, 0]);
-    const [camPose] = useEntry(cameraPose, [0, 0, 0]);
+    const [avgCamPose] = useEntry(avgCameraPose, [0, 0, 0]);
+    const [frontCamPose] = useEntry(frontCameraPose, [0, 0, 0]);
+    const [backCamPose] = useEntry(backCameraPose, [0, 0, 0]);
 
     const divStyles: CSSProperties = {
         display: 'flex',
@@ -220,7 +222,9 @@ const Dev: React.FC = () => {
                     rotation={0}
                 >
                     <FieldRobot color={allianceRed ? 'red' : 'blue'} opacity={1} pose={pose} />
-                    <FieldRobot color={'yellow'} opacity={0.5} pose={camPose} />
+                    <FieldRobot color={'orange'} opacity={0.5} pose={avgCamPose} />
+                    <FieldRobot color={'green'} opacity={0.5} pose={frontCamPose} />
+                    <FieldRobot color={'yellow'} opacity={0.5} pose={backCamPose} />
                 </Field>
             </div>
             <hr />
