@@ -23,8 +23,7 @@ const TeleOp: React.FC = () => {
         height: '35vh'
     };
 
-    // TODO: update to the actual FMS info key & Decide if origin should change like it is currently
-    let allianceRed = useEntry(alliance, true);
+    let [allianceRed] = useEntry(alliance, true);
 
     return (
         <>
