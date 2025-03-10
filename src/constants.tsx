@@ -1,4 +1,4 @@
-export const robotIPAddress = 'localhost';
+export const robotIPAddress = '10.31.40.2';
 
 export const reefSideChooser = '/SmartDashboard/Starting Side';
 export const reefLevelChooser = '/SmartDashboard/Reef Level';
