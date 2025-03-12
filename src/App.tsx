@@ -24,7 +24,7 @@ function App() {
 
   const [currentVoltage] = useEntry(curVoltage, 0.0);
   const [override] = useEntry(manOverride, false);
-  const [oriented] = useEntry(fieldOriented, false);
+  const [oriented] = useEntry(fieldOriented, true);
 
   useEffect(() => {
     console.log(override);
