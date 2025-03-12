@@ -66,7 +66,7 @@ function App() {
         <h1 style={{ pointerEvents: 'none', margin: '0', fontSize: '3vw', color: override ? 'red' : 'transparent', backgroundColor: override ? 'black' : 'transparent', borderRadius: '35px', fontWeight: '900', padding: '2vh 4vw 2vh 4vw', fontFamily: 'monospace' }}>Manual Override</h1>
       </div>
       <div style={{ pointerEvents: 'none', position: 'absolute', top: '5%', left: '50%', transform: 'translate(-50%, 50%)' }}>
-        <h1 style={{ pointerEvents: 'none', margin: '0', fontSize: '3vw', color: oriented ? 'green' : 'transparent', backgroundColor: oriented ? 'black' : 'transparent', borderRadius: '35px', fontWeight: '900', padding: '2vh 4vw 2vh 4vw', fontFamily: 'monospace' }}>Bot Oriented</h1>
+        <h1 style={{ pointerEvents: 'none', margin: '0', fontSize: '3vw', color: !oriented ? 'green' : 'transparent', backgroundColor: !oriented ? 'black' : 'transparent', borderRadius: '35px', fontWeight: '900', padding: '2vh 4vw 2vh 4vw', fontFamily: 'monospace' }}>Bot Oriented</h1>
       </div>
     </>
   );
