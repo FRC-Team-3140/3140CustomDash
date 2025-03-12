@@ -19,7 +19,8 @@ export const alliance = '/FMSInfo/IsRedAlliance';
 
 export const gameStage = '/Dashboard/DS/state_s';
 
-export const manOverride = '/Dashboard/Misc/driveManualMode_b';
+export const manOverride = '/Dashboard/Misc/driveModeManual_b';
+export const fieldOriented = '/Dashboard/Misc/fieldOriented_b';
 
 // Reef Entries
 // TODO: Implement Coral functionality in Robot Code & in reef component

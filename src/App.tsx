@@ -3,12 +3,12 @@ import './App.css';
 import logo from './assets/FlagshipLineartIcon.png';
 import Dashboard from './components/Dashboard';
 import { DashboardThemes, darkTheme } from "@frc-web-components/fwc/themes";
-import { curVoltage, minVoltage, manOverride } from './constants';
-import { useEntry, useNt4} from '@frc-web-components/react';
+import { curVoltage, minVoltage, manOverride, fieldOriented } from './constants';
+import { useEntry, useNt4 } from '@frc-web-components/react';
 
 
 function App() {
-   
+
   const { nt4Provider } = useNt4();
   let [connected, setConnected] = useState(false);
 
@@ -24,12 +24,17 @@ function App() {
 
   const [currentVoltage] = useEntry(curVoltage, 0.0);
   const [override] = useEntry(manOverride, false);
+  const [oriented] = useEntry(fieldOriented, false);
+
+  useEffect(() => {
+    console.log(override);
+  }, [override]);
 
   const voltageFlash: CSSProperties = {
     width: '100vw',
     height: '100vh',
-    position: 'fixed', 
-    top: '0', 
+    position: 'fixed',
+    top: '0',
     left: '0',
     backgroundColor: (connected && currentVoltage <= minVoltage) ? 'rgb(200, 0, 0)' : 'transparent'
   };
@@ -57,8 +62,11 @@ function App() {
           <h1 style={{ pointerEvents: 'none', color: !connected ? 'red' : 'transparent', backgroundColor: !connected ? '#333' : 'transparent', borderRadius: '15px', fontWeight: '900', padding: '1vw', fontSize: '3vw', fontFamily: 'monospace' }}>Not Connected</h1>
         </div>
       </div>
-      <div style={{ pointerEvents: 'none', position: 'absolute', top: '15%', left: '50%', transform: 'translate(-50%, -50%)' }}>
+      <div style={{ pointerEvents: 'none', position: 'absolute', top: '5%', left: '50%', transform: 'translate(-50%, -50%)' }}>
         <h1 style={{ pointerEvents: 'none', margin: '0', fontSize: '3vw', color: override ? 'red' : 'transparent', backgroundColor: override ? 'black' : 'transparent', borderRadius: '35px', fontWeight: '900', padding: '2vh 4vw 2vh 4vw', fontFamily: 'monospace' }}>Manual Override</h1>
+      </div>
+      <div style={{ pointerEvents: 'none', position: 'absolute', top: '5%', left: '50%', transform: 'translate(-50%, 50%)' }}>
+        <h1 style={{ pointerEvents: 'none', margin: '0', fontSize: '3vw', color: oriented ? 'green' : 'transparent', backgroundColor: oriented ? 'black' : 'transparent', borderRadius: '35px', fontWeight: '900', padding: '2vh 4vw 2vh 4vw', fontFamily: 'monospace' }}>Bot Oriented</h1>
       </div>
     </>
   );

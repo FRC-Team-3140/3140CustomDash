@@ -30,7 +30,7 @@ const Auto: React.FC = () => {
         transform: 'translate(-50%, 50%)'
     };
 
-    let allianceRed = useEntry(alliance, true);
+    const [allianceRed] = useEntry(alliance, true);
 
     return (
         <>

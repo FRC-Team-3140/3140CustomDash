@@ -29,7 +29,7 @@ const Dev: React.FC = () => {
         width: '70vw',
     };
 
-    let allianceRed = useEntry(alliance, true);
+    const [allianceRed] = useEntry(alliance, true);
 
     ////////////////////////////////// Button States //////////////////////////////////
     // Subsystem Tests
