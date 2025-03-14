@@ -21,7 +21,7 @@ const ReefComponent = () => {
 
     useEffect(() => {
         if (selectedButton != null) {
-            const position = `L${4 - Math.floor(selectedButton / 2)}_${selectedButton % 2 === 0 ? 'L' : 'R'}`;
+            const position = `${selectedButton % 2 === 0 ? 'L' : 'R'}_${4 - Math.floor(selectedButton / 2)}`;
             setReefPosition(position);
         }
     }, [selectedButton]);

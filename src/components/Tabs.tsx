@@ -70,7 +70,7 @@ export default function BasicTabs() {
             case "TELEOP":
                 setValue(1);
                 break;
-            case "Dev":
+            case "DEV":
                 setValue(2);
                 break;
             default:
