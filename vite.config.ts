@@ -6,7 +6,7 @@ export default defineConfig({
 	plugins: [react()],
   	server: {
     	open: false,
-   		port: 5801,
+   		port: 5809,
 		watch: {
 			usePolling: true
 		}
@@ -14,6 +14,6 @@ export default defineConfig({
 	
   	preview: {
     	open: true,
-   		port: 5800,
+   		port: 5810,
   	},
 });
