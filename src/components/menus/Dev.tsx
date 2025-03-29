@@ -5,10 +5,12 @@ import {
     FieldRobot,
     Logger,
     Swerve,
+    Canvas,
+    CanvasMjpgStream,
 } from '@frc-web-components/react';
 import React, { CSSProperties, useEffect } from 'react';
 import '../../devToggleBtn.css';
-import { alliance, botPose, avgCameraPose, frontCameraPose, backCameraPose, devAlgaeGround, devAlgaeIntake, devAlgaeReef, devElevator, devEndEffector, devSourceHandoff, devSwerve, runningCommandEntry, runningCommandStatusEntry, numLogged, swerveMeasuredStates_sa, swerveDesiredStates_sa, botRotDeg, maxVelo } from '../../constants';
+import {cameraStream0Proc, cameraStream2Proc, alliance, botPose, avgCameraPose, frontCameraPose, backCameraPose, devAlgaeGround, devAlgaeIntake, devAlgaeReef, devElevator, devEndEffector, devSourceHandoff, devSwerve, runningCommandEntry, runningCommandStatusEntry, numLogged, swerveMeasuredStates_sa, swerveDesiredStates_sa, botRotDeg, maxVelo } from '../../constants';
 
 const Dev: React.FC = () => {
 
@@ -132,6 +134,64 @@ const Dev: React.FC = () => {
 
     return (
         <>
+            <div style={{ ...divStyles, width: '100%', justifyContent: 'center' }}>
+                <Field
+                    style={fieldStyles}
+                    cropLeft={0.1}
+                    cropRight={0.9}
+                    rotationUnit="deg"
+                    origin="blue"
+                    rotation={0}
+                >
+                    <FieldRobot color={allianceRed ? 'red' : 'blue'} opacity={1} pose={pose} />
+                    <FieldRobot color={'orange'} opacity={0.5} pose={avgCamPose} />
+                    <FieldRobot color={'green'} opacity={0.5} pose={frontCamPose} />
+                    <FieldRobot color={'yellow'} opacity={0.5} pose={backCamPose} />
+                </Field>
+            </div>
+
+            <div style={{  left: '0', bottom: '50%', minWidth: 'fit-content', minHeight: 'fit-content', maxWidth: '50vw', marginLeft: '15%', display: 'flex' }}>
+                <div style={{ paddingRight: '2%', margin: '0' }}>
+                    <Canvas backgroundColor='rgba(0, 0, 0, 0.0)'>
+                        <CanvasMjpgStream origin={[0, 0]} crosshairColor="white" srcs={[cameraStream0Proc]} />
+                    </Canvas>
+                </div>
+                <div style={{ padding: '0', margin: '0' }}>
+                    <Canvas backgroundColor='rgba(0, 0, 0, 0.0)'>
+                        <CanvasMjpgStream origin={[0, 0]} crosshairColor="white" srcs={[cameraStream2Proc]} />
+                    </Canvas>
+                </div>
+            </div>
+            <hr />
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <label htmlFor="numberInput" style={{ marginBottom: '5px', color: 'white' }}>Commands to log:</label>
+                <input
+                    id="numberInput"
+                    type="number"
+                    defaultValue={numOLoggedCmds}
+                    onChange={(e) => setNumOLoggedCmds(Number(e.target.value))}
+                    style={{ textAlign: 'center', width: '8vw', color: 'white', backgroundColor: 'black', border: '1px solid white', borderRadius: '5px' }}
+                />
+            </div>
+            <div style={{ ...divStyles, width: '100%', justifyContent: 'center', margin: '4vh 0 4vh 0' }}>
+                <div id='commandsLog' style={{ height: '50vh', width: '40vw', backgroundColor: 'black', border: '1px solid white', borderRadius: '5px', maxHeight: '50vh', overflow: 'auto', fontFamily: 'monospace', color: 'white', padding: '1vw' }}>
+                    {/* VV Will get cleared when the network tables connect and commands are sent accross VV */}
+                    <p>=== Commands Log ===</p>
+                </div>
+                <div style={{ height: '50vh', width: '40vw', backgroundColor: 'black', border: '1px solid white', borderRadius: '5px', maxHeight: '50vh', overflow: 'auto', fontFamily: 'monospace', color: 'white', padding: '1vw' }}>
+                    <Logger title="Robot Logger" maxLogCount={numOLoggedCmds} level="debug" />
+                </div>
+            </div>
+            <div style={{ display: 'flex', width: '100%' }}>
+                <h2 style={{ position: 'absolute', left: '50%', transform: 'translate(-50%, 0)' }}>{botRotate ? botRot : 0} deg</h2>
+                <ToggleButton label='Allow Bot Rotate' style={{ width: '10vw', marginLeft: '65%' }} toggled={botRotate} ontoggle={() => setBotRotate(!botRotate)} />
+            </div>
+            <div style={divStyles}>
+                <div style={{ ...divStyles, width: '100%', justifyContent: 'center', margin: '4vh 0 4vh 0' }}>
+                    <Swerve moduleCount={4} wheelLocations={[1, 1, 1, -1, -1, 1, -1, -1]} measuredStates={measured} desiredStates={desired} robotRotation={botRotate ? botRot : 0} maxSpeed={maxSpeed} rotationUnit="degrees" sizeLeftRight={4} sizeFrontBack={4} />
+                </div>
+            </div>
+
             <hr />
             <div style={{ ...divStyles, width: '100%', justifyContent: 'center' }}>
                 <h2>Subsystem Tests</h2>
@@ -186,50 +246,6 @@ const Dev: React.FC = () => {
                 </div>
             </div>
             <hr />
-            <div style={{ ...divStyles, width: '100%', justifyContent: 'center' }}>
-                <Field
-                    style={fieldStyles}
-                    cropLeft={0.1}
-                    cropRight={0.9}
-                    rotationUnit="deg"
-                    origin="blue"
-                    rotation={0}
-                >
-                    <FieldRobot color={allianceRed ? 'red' : 'blue'} opacity={1} pose={pose} />
-                    <FieldRobot color={'orange'} opacity={0.5} pose={avgCamPose} />
-                    <FieldRobot color={'green'} opacity={0.5} pose={frontCamPose} />
-                    <FieldRobot color={'yellow'} opacity={0.5} pose={backCamPose} />
-                </Field>
-            </div>
-            <hr />
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <label htmlFor="numberInput" style={{ marginBottom: '5px', color: 'white' }}>Commands to log:</label>
-                <input
-                    id="numberInput"
-                    type="number"
-                    defaultValue={numOLoggedCmds}
-                    onChange={(e) => setNumOLoggedCmds(Number(e.target.value))}
-                    style={{ textAlign: 'center', width: '8vw', color: 'white', backgroundColor: 'black', border: '1px solid white', borderRadius: '5px' }}
-                />
-            </div>
-            <div style={{ ...divStyles, width: '100%', justifyContent: 'center', margin: '4vh 0 4vh 0' }}>
-                <div id='commandsLog' style={{ height: '50vh', width: '40vw', backgroundColor: 'black', border: '1px solid white', borderRadius: '5px', maxHeight: '50vh', overflow: 'auto', fontFamily: 'monospace', color: 'white', padding: '1vw' }}>
-                    {/* VV Will get cleared when the network tables connect and commands are sent accross VV */}
-                    <p>=== Commands Log ===</p>
-                </div>
-                <div style={{ height: '50vh', width: '40vw', backgroundColor: 'black', border: '1px solid white', borderRadius: '5px', maxHeight: '50vh', overflow: 'auto', fontFamily: 'monospace', color: 'white', padding: '1vw' }}>
-                    <Logger title="Robot Logger" maxLogCount={numOLoggedCmds} level="debug" />
-                </div>
-            </div>
-            <div style={{ display: 'flex', width: '100%' }}>
-                <h2 style={{ position: 'absolute', left: '50%', transform: 'translate(-50%, 0)' }}>{botRotate ? botRot : 0} deg</h2>
-                <ToggleButton label='Allow Bot Rotate' style={{ width: '10vw', marginLeft: '65%' }} toggled={botRotate} ontoggle={() => setBotRotate(!botRotate)} />
-            </div>
-            <div style={divStyles}>
-                <div style={{ ...divStyles, width: '100%', justifyContent: 'center', margin: '4vh 0 4vh 0' }}>
-                    <Swerve moduleCount={4} wheelLocations={[1, 1, 1, -1, -1, 1, -1, -1]} measuredStates={measured} desiredStates={desired} robotRotation={botRotate ? botRot : 0} maxSpeed={maxSpeed} rotationUnit="degrees" sizeLeftRight={4} sizeFrontBack={4} />
-                </div>
-            </div>
         </>
     );
 };
