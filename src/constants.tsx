@@ -28,11 +28,11 @@ export const coralEntry = '/Dashboard/coral'
 export const gettingAlgaeEntry = '/ROBOTINFO/GettingAlgae';
 
 // Camera Streams (MJPEG)
-export const cameraStream0 = 'http://10.31.40.200:1181/stream.mjpg';
-export const cameraStream2 = 'http://10.31.40.200:1183/stream.mjpg';
+export const cameraStream0 = 'http://photonvision.local:1181/stream.mjpg';
+export const cameraStream2 = 'http://photonvision.local:1183/stream.mjpg';
 
-export const cameraStream0Proc = 'http://10.31.40.200:1182/stream.mjpg';
-export const cameraStream2Proc = 'http://10.31.40.200:1184/stream.mjpg';
+export const cameraStream0Proc = 'http://photonvision.local:1182/stream.mjpg';
+export const cameraStream2Proc = 'http://photonvision.local:1184/stream.mjpg';
 export const numLogged = '/Dashboard/Dev/numOLoggedCmds_i';
 
 export const maxVelo = '/Dashboard/Dev/maxVelo_d'
