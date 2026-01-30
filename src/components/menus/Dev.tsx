@@ -10,7 +10,7 @@ import {
 } from '@frc-web-components/react';
 import React, { CSSProperties, useEffect } from 'react';
 import '../../devToggleBtn.css';
-import {cameraStream0Proc, cameraStream2Proc, alliance, botPose, avgCameraPose, frontCameraPose, backCameraPose, devAlgaeGround, devAlgaeIntake, devAlgaeReef, devElevator, devEndEffector, devSourceHandoff, devSwerve, runningCommandEntry, runningCommandStatusEntry, numLogged, swerveMeasuredStates_sa, swerveDesiredStates_sa, botRotDeg, maxVelo } from '../../constants';
+import {cameraStream0Proc, cameraStream2Proc, alliance, botPose, avgCameraPose, frontCameraPose, backCameraPose, devSwerve, runningCommandEntry, runningCommandStatusEntry, numLogged, swerveMeasuredStates_sa, swerveDesiredStates_sa, botRotDeg, maxVelo, devClimber, devTurret, cameraStream1Proc } from '../../constants';
 
 const Dev: React.FC = () => {
 
@@ -36,55 +36,32 @@ const Dev: React.FC = () => {
     ////////////////////////////////// Button States //////////////////////////////////
     // Subsystem Tests
     const [swerveToggled, setSwerveToggled] = React.useState<boolean>(false);
-    const [algaeIntakeToggled, setAlgaeIntakeToggled] = React.useState<boolean>(false);
-    const [endEffectorToggled, setEndEffectorToggled] = React.useState<boolean>(false);
-    const [elevatorToggled, setElevatorToggled] = React.useState<boolean>(false);
-
-    const [sourceHandoffToggled, setSourceHandoffToggled] = React.useState<boolean>(false);
-    const [algaeReefToggled, setAlgaeReefToggled] = React.useState<boolean>(false);
-    const [algaeGroundToggled, setAlgaeGroundToggled] = React.useState<boolean>(false);
+    const [turretToggled, setTurretToggled] = React.useState<boolean>(false);
+    const [climberToggled, setClimberToggled] = React.useState<boolean>(false);
 
     /////////////////////////////// Networktable Entries ///////////////////////////////
     // Function Tests
     const [swerveValue, swerveEntry] = useEntry<boolean>(devSwerve, false);
-    const [algaeIntakeValue, algaeIntakeEntry] = useEntry<boolean>(devAlgaeIntake, false);
-    const [endEffectorValue, endEffectorEntry] = useEntry<boolean>(devEndEffector, false);
-    const [elevatorValue, elevatorEntry] = useEntry<boolean>(devElevator, false);
-
-    const [sourceHandoffValue, sourceHandoffEntry] = useEntry<boolean>(devSourceHandoff, false);
-    const [algaeReefValue, algaeReefEntry] = useEntry<boolean>(devAlgaeReef, false);
-    const [algaeGroundValue, algaeGroundEntry] = useEntry<boolean>(devAlgaeGround, false);
+    const [turretValue, turretEntry] = useEntry<boolean>(devTurret, false);
+    const [climberValue, climberEntry] = useEntry<boolean>(devClimber, false);
 
     useEffect(() => {
         setSwerveToggled(swerveValue);
-        setAlgaeIntakeToggled(algaeIntakeValue);
-        setEndEffectorToggled(endEffectorValue);
-        setElevatorToggled(elevatorValue);
-        setSourceHandoffToggled(sourceHandoffValue);
-        setAlgaeReefToggled(algaeReefValue);
-        setAlgaeGroundToggled(algaeGroundValue);
-    }, [swerveValue, algaeIntakeValue, endEffectorValue, elevatorValue, sourceHandoffValue, algaeReefValue, algaeGroundValue]);
-
+        setTurretToggled(turretValue);
+        setClimberToggled(climberValue);
+    }, [swerveValue, turretValue, climberValue]);
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
             if (event.key === 'r') {
                 // States 
                 setSwerveToggled(false);
-                setAlgaeIntakeToggled(false);
-                setEndEffectorToggled(false);
-                setElevatorToggled(false);
-                setSourceHandoffToggled(false);
-                setAlgaeReefToggled(false);
-                setAlgaeGroundToggled(false);
+                setTurretToggled(false);
+                setClimberToggled(false);
 
                 // Networktable Entries
                 swerveEntry(false);
-                algaeIntakeEntry(false);
-                endEffectorEntry(false);
-                elevatorEntry(false);
-                sourceHandoffEntry(false);
-                algaeReefEntry(false);
-                algaeGroundEntry(false);
+                turretEntry(false);
+                climberEntry(false);
             }
         };
 
@@ -142,6 +119,7 @@ const Dev: React.FC = () => {
                     rotationUnit="deg"
                     origin="blue"
                     rotation={0}
+                    game='Reefscape'
                 >
                     <FieldRobot color={allianceRed ? 'red' : 'blue'} opacity={1} pose={pose} />
                     <FieldRobot color={'orange'} opacity={0.5} pose={avgCamPose} />
@@ -150,10 +128,15 @@ const Dev: React.FC = () => {
                 </Field>
             </div>
 
-            <div style={{  left: '0', bottom: '50%', minWidth: 'fit-content', minHeight: 'fit-content', maxWidth: '50vw', marginLeft: '15%', display: 'flex' }}>
-                <div style={{ paddingRight: '2%', margin: '0' }}>
+            <div style={{ width: '100%', display: 'flex', justifyContent: 'center', gap: '2%', flexWrap: 'wrap' }}>
+                <div style={{ padding: '0', margin: '0' }}>
                     <Canvas backgroundColor='rgba(0, 0, 0, 0.0)'>
                         <CanvasMjpgStream origin={[0, 0]} crosshairColor="white" srcs={[cameraStream0Proc]} />
+                    </Canvas>
+                </div>
+                <div style={{ padding: '0', margin: '0' }}>
+                    <Canvas backgroundColor='rgba(0, 0, 0, 0.0)'>
+                        <CanvasMjpgStream origin={[0, 0]} crosshairColor="white" srcs={[cameraStream1Proc]} />
                     </Canvas>
                 </div>
                 <div style={{ padding: '0', margin: '0' }}>
@@ -206,19 +189,14 @@ const Dev: React.FC = () => {
                         ontoggle={() => { setSwerveToggled(!swerveToggled); swerveEntry(!swerveToggled) }} />
                     <ToggleButton
                         className="toggle"
-                        label="Test Algae Intake"
-                        toggled={algaeIntakeToggled}
-                        ontoggle={() => { setAlgaeIntakeToggled(!algaeIntakeToggled); algaeIntakeEntry(!algaeIntakeToggled) }} />
+                        label="Test Turret"
+                        toggled={turretToggled}
+                        ontoggle={() => { setTurretToggled(!turretToggled); turretEntry(!turretToggled) }} />
                     <ToggleButton
                         className="toggle"
-                        label="Test End Effector"
-                        toggled={endEffectorToggled}
-                        ontoggle={() => { setEndEffectorToggled(!endEffectorToggled); endEffectorEntry(!endEffectorToggled) }} />
-                    <ToggleButton
-                        className="toggle"
-                        label="Test Elevator"
-                        toggled={elevatorToggled}
-                        ontoggle={() => { setElevatorToggled(!elevatorToggled); elevatorEntry(!elevatorToggled) }} />
+                        label="Test Climber"
+                        toggled={climberToggled}
+                        ontoggle={() => { setClimberToggled(!climberToggled); climberEntry(!climberToggled) }} />
                 </div>
             </div>
             <hr />
@@ -228,21 +206,7 @@ const Dev: React.FC = () => {
             <hr />
             <div style={{ ...divStyles, width: '100%', justifyContent: 'center' }}>
                 <div style={{ ...divStyles, width: '65vw', justifyContent: 'space-between' }}>
-                    <ToggleButton
-                        className="toggle"
-                        label="Source Handoff"
-                        toggled={sourceHandoffToggled}
-                        ontoggle={() => { setSourceHandoffToggled(!sourceHandoffToggled); sourceHandoffEntry(!sourceHandoffToggled) }} />
-                    <ToggleButton
-                        className="toggle"
-                        label="Algae Reef"
-                        toggled={algaeReefToggled}
-                        ontoggle={() => { setAlgaeReefToggled(!algaeReefToggled); algaeReefEntry(!algaeReefToggled) }} />
-                    <ToggleButton
-                        className="toggle"
-                        label="Algae Ground"
-                        toggled={algaeGroundToggled}
-                        ontoggle={() => { setAlgaeGroundToggled(!algaeGroundToggled); algaeGroundEntry(!algaeGroundToggled) }} />
+                    
                 </div>
             </div>
             <hr />

@@ -38,7 +38,7 @@ function App() {
     left: '0',
     backgroundColor: (connected && currentVoltage <= minVoltage) ? 'rgb(200, 0, 0)' : 'transparent'
   };
-  // TODO: why doesn't this change dynamically?
+  
   useEffect(() => {
     const interval = setInterval(async () => setConnected(nt4Provider.isConnected()), 750);
 

@@ -8,8 +8,7 @@ import {
     VoltageView
 } from '@frc-web-components/react';
 import React, { CSSProperties } from 'react';
-import ReefComponent from '../Reef';
-import { alliance, botPose, cameraStream0, cameraStream2, curVoltage } from '../../constants';
+import { alliance, botPose, cameraStream0, curVoltage } from '../../constants';
 
 const TeleOp: React.FC = () => {
     const [pose] = useEntry(botPose, [0, 0, 0]);
@@ -25,15 +24,10 @@ const TeleOp: React.FC = () => {
 
     return (
         <>
-            <div style={{ position: 'absolute', left: '0', bottom: '50%', minWidth: 'fit-content', minHeight: 'fit-content', maxWidth: '50vw', transform: 'translate(0%, 50%)', marginLeft: '2%', display: 'flex' }}>
+            <div style={{ position: 'absolute', left: '0', bottom: '50%', minWidth: '75vw', minHeight: 'fit-content', maxWidth: '50vw', transform: 'translate(0%, 50%)', marginLeft: '2%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <div style={{ paddingRight: '2%', margin: '0' }}>
                     <Canvas backgroundColor='rgba(0, 0, 0, 0.0)'>
                         <CanvasMjpgStream origin={[0, 0]} crosshairColor="white" srcs={[cameraStream0]} />
-                    </Canvas>
-                </div>
-                <div style={{ padding: '0', margin: '0' }}>
-                    <Canvas backgroundColor='rgba(0, 0, 0, 0.0)'>
-                        <CanvasMjpgStream origin={[0, 0]} crosshairColor="white" srcs={[cameraStream2]} />
                     </Canvas>
                 </div>
             </div>
@@ -45,11 +39,11 @@ const TeleOp: React.FC = () => {
                     rotationUnit="deg"
                     origin="blue"
                     rotation={allianceRed ? 0 : 180}
+                    game='Reefscape'
                 >
                     <FieldRobot color={allianceRed ? 'red' : 'blue'} opacity={1} pose={pose} />
                 </Field>
             </div>
-            <ReefComponent />
             <div style={{ position: 'absolute', bottom: '4vh', left: '1vw', width: '25vw', margin: '1%' }}>
                 <style>{`
                     .volt {
