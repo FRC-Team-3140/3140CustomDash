@@ -1,8 +1,8 @@
 export const robotIPAddress = '10.31.40.2';
 
 // TODO: Update these paths as needed
-export const collectionChooser = '/SmartDashboard/collection';
-export const climbChooser = '/SmartDashboard/climb';
+export const pathChooser = '/SmartDashboard/Path';
+export const climbChooser = '/SmartDashboard/Climb';
 
 export const runningCommandEntry = '/Dashboard/commands_sa';
 export const runningCommandStatusEntry = '/Dashboard/commandStatuses_ia';
@@ -21,6 +21,8 @@ export const gameStage = '/Dashboard/DS/state_s';
 
 export const manOverride = '/Dashboard/Misc/driveModeManual_b';
 export const fieldOriented = '/Dashboard/Misc/fieldOriented_b';
+
+export const shouldShoot = '/Dashboard/Misc/shouldShoot_b';
 
 // Camera Streams (MJPEG)
 export const cameraStream0 = 'http://photonvision.local:1181/stream.mjpg';

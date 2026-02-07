@@ -7,7 +7,7 @@ import {
     VoltageView
 } from '@frc-web-components/react';
 import React, { CSSProperties } from 'react';
-import { alliance, botPose, curVoltage, collectionChooser, climbChooser } from '../../constants';
+import { alliance, botPose, curVoltage, pathChooser, climbChooser, shouldShoot } from '../../constants';
 import { Checkbox, FormControlLabel } from '@mui/material';
 
 const Auto: React.FC = () => {
@@ -38,11 +38,11 @@ const Auto: React.FC = () => {
             <div style={divStyles}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                     {/* LEFT / RIGHT Neutral, Depot, Outpost */}
-                    <SendableChooser source-key={collectionChooser} style={{ width: '25vw', fontWeight: 'bold' }} label='Path' />
+                    <SendableChooser source-key={pathChooser} style={{ width: '25vw', fontWeight: 'bold' }} label='Path' />
                     {/* Climb LEFT / RIGHT, No Climb */}
                     <SendableChooser source-key={climbChooser} style={{ width: '25vw', fontWeight: 'bold' }} label='Climb' />
                     {/* Mobility --> Drive forward and shoot against hub */}
-                    <FormControlLabel control={<Checkbox source-key="/Dashboard/Misc/mobility_b" sx={{ color: 'white', '& .MuiOutlinedInput-notchedOutline': { borderColor: 'white' } }} />} label="Mobility" style={{ color: 'white' }} />
+                    <FormControlLabel control={<Checkbox source-key={shouldShoot} sx={{ color: 'white', '& .MuiOutlinedInput-notchedOutline': { borderColor: 'white' } }} />} label="Shoot" style={{ color: 'white' }} />
                 </div>
                 <BasicFmsInfo id="fmsInfo" source-key="/FMSInfo" style={{ width: '25vw', fontSize: '1.25vw' }} />
                 <div style={{ width: '25vw' }} />
